@@ -1,0 +1,37 @@
+# Project build file
+
+-hblib
+-inc
+
+-olib/${hb_plat}/${hb_comp}/${hb_name}
+
+-w3 -es2 -gc3
+
+-depurlbase=sfml:https://www.sfml-dev.org/index.php
+-depurlbase=sfml:https://github.com/SFML/SFML
+-deppkgname=sfml:sfml-dev{deb}
+-deppkgname=sfml:sfml-devel{rpm}
+-deppkgname=sfml:sfml{homebrew|pkgng}
+-deppkgname=sfml:sfml{pacman}
+-deppkgname=sfml:mingw-w64-i686-sfml{msys2&x86}
+-deppkgname=sfml:mingw-w64-x86_64-sfml{msys2&x86_64}
+-depkeyhead=sfml:SFML/Window.h
+-depcontrol=sfml:${HB_WITH_SFML}
+-depincpath=sfml:/usr/include
+-depincpath=sfml:/usr/local/include
+-depincpath=sfml:/opt/local/include
+-depincpath=sfml:/usr/local/opt/include
+-depimplibs=sfml:../bin/csfml-window-2.dll
+-depimplibs=sfml:../lib/libcsfml-window.a
+-depimplibd=sfml:sfml
+-depfinish=sfml
+
+-iinclude
+
+-hbx=include/${hb_name}.hbx
+
+src/*.c
+src/*.prg
+
+$hb_pkg_dynlib.hbm
+$hb_pkg_install.hbm

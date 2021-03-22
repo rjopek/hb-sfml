@@ -1,0 +1,50 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "San Francisco", "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", Arial, sans-serif;
+  background-color: #fff;
+}
+
+.markdown-body {
+  background-color: #fff;
+  box-sizing: border-box;
+  min-width: 200px;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 45px;
+}
+
+.markdown-body p {
+   margin-top: 0;
+   margin-bottom: 10px;
+   text-align: justify;
+   text-justify: inter-word;
+   text-indent: 30px;
+ }
+
+.markdown-body img {
+   border-style: none;
+ }
+
+.markdown-body img {
+   max-width: 100%;
+   box-sizing: initial;
+   background-color: #fff;
+   padding: 10px;
+ }
+
+ .markdown-body img[align="right"] {
+   padding-left: 20px;
+ }
+
+ .markdown-body img[align="left"] {
+   padding-right: 20px;
+ }
+
+@media (max-width: 767px) {
+  .markdown-body {
+    padding: 15px;
+  }
+}
