@@ -97,21 +97,108 @@ HB_FUNC( CREATEUNICODE )
 // void sfWindow_setPosition(sfWindow* window, sfVector2i position);
 
 // sfVector2u sfWindow_getSize(const sfWindow* window);
+HB_FUNC( getSize )
+{
+   const sfWindow* window = hb_sfWindow_param( 1 );
+
+   if( window )
+   {
+      sfVector2u sfvector2u = sfWindow_getSize( window );
+
+      PHB_ITEM info = hb_itemArrayNew( 2 );
+
+      hb_arraySetNI( info, 1, ( unsigned int) sfvector2u.x );
+      hb_arraySetNI( info, 2, ( unsigned int ) sfvector2u.y );
+
+      hb_itemReturnRelease( info );
+
+   }
+   else
+   {
+      hb_errRT_BASE_SubstR( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+   }
+}
 
 // void sfWindow_setSize(sfWindow* window, sfVector2u size);
+HB_FUNC( SETSIZE )
+{
+   PHB_ITEM pItem;
+
+   sfWindow* window = hb_sfWindow_param( 1 );
+
+   if( window && ( pItem = hb_param( 2, HB_IT_ARRAY ) ) != NULL && hb_arrayLen( pItem ) == 2 )
+   {
+      sfVector2u size;
+
+      size.x = ( unsigned int ) hb_arrayGetNI( pItem, 1 );
+      size.y = ( unsigned int ) hb_arrayGetNI( pItem, 2 );
+
+      sfWindow_setSize( window, size );
+   }
+   else
+   {
+      hb_errRT_BASE_SubstR( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+   }
+}
 
 // void sfWindow_setTitle(sfWindow* window, const char* title);
+HB_FUNC( SETTITLE )
+{
+   sfWindow* window = hb_sfWindow_param( 1 );
+
+   if( window && hb_param( 2, HB_IT_STRING ) != NULL )
+   {
+      sfWindow_setTitle( window, hb_parc( 2 ) );
+   }
+   else
+   {
+      hb_errRT_BASE_SubstR( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+   }
+}
 
 // void sfWindow_setUnicodeTitle(sfWindow* window, const sfUint32* title);
+HB_FUNC( SETUNICODETITLE )
+{
+   sfWindow* window = hb_sfWindow_param( 1 );
+
+   if( window && hb_param( 2, HB_IT_INTEGER ) != NULL )
+   {
+      const sfUint32 title;
+      sfWindow_setUnicodeTitle( window, &title );
+      hb_storni( title, 2 );
+   }
+   else
+   {
+      hb_errRT_BASE_SubstR( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+   }
+}
 
 // void sfWindow_setIcon(sfWindow* window, unsigned int width, unsigned int height, const sfUint8* pixels);
+HB_FUNC( SETICON )
+{
+   sfWindow* window = hb_sfWindow_param( 1 );
+
+   if( window &&
+      hb_param( 2, HB_IT_INTEGER ) != NULL &&
+      hb_param( 3, HB_IT_INTEGER ) != NULL &&
+      hb_param( 4, HB_IT_INTEGER ) != NULL )
+   {
+      const sfUint8 pixels;
+      sfWindow_setIcon( window, ( unsigned int ) hb_parni( 2 ), ( unsigned int ) hb_parni( 3 ), &pixels );
+      hb_storni( pixels, 4 );
+   }
+   else
+   {
+      hb_errRT_BASE_SubstR( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+   }
+}
 
 // void sfWindow_setVisible(sfWindow* window, sfBool visible);
 HB_FUNC( SETVISIBLE )
 {
    sfWindow* window = hb_sfWindow_param( 1 );
 
-   if( window && hb_param( 2, HB_IT_LOGICAL )  != NULL )
+   if( window && hb_param( 2, HB_IT_LOGICAL ) != NULL )
    {
       sfWindow_setVisible( window, hb_parl( 2 ) );
    }
@@ -126,7 +213,7 @@ HB_FUNC( SETVERTICALSYNCENABLED )
 {
    sfWindow* window = hb_sfWindow_param( 1 );
 
-   if( window && hb_param( 2, HB_IT_LOGICAL )  != NULL )
+   if( window && hb_param( 2, HB_IT_LOGICAL ) != NULL )
    {
       sfWindow_setVerticalSyncEnabled( window, hb_parl( 2 ) );
    }
@@ -141,7 +228,7 @@ HB_FUNC( SETMOUSECURSORVISIBLE )
 {
    sfWindow* window = hb_sfWindow_param( 1 );
 
-   if( window && hb_param( 2, HB_IT_LOGICAL )  != NULL )
+   if( window && hb_param( 2, HB_IT_LOGICAL ) != NULL )
    {
       sfWindow_setMouseCursorVisible( window, hb_parl( 2 ) );
    }
@@ -156,7 +243,7 @@ HB_FUNC( SETMOUSECURSORGRABBED )
 {
    sfWindow* window = hb_sfWindow_param( 1 );
 
-   if( window && hb_param( 2, HB_IT_LOGICAL )  != NULL )
+   if( window && hb_param( 2, HB_IT_LOGICAL ) != NULL )
    {
       sfWindow_setMouseCursorGrabbed( window, hb_parl( 2 ) );
    }
@@ -173,9 +260,9 @@ HB_FUNC( SETKEYREPEATENABLED )
 {
    sfWindow* window = hb_sfWindow_param( 1 );
 
-   if( window && hb_param( 2, HB_IT_LOGICAL )  != NULL )
+   if( window && hb_param( 2, HB_IT_LOGICAL ) != NULL )
    {
-      hb_retl( sfWindow_setKeyRepeatEnabled( window, hb_parl( 2 ) ) );
+      sfWindow_setKeyRepeatEnabled( window, hb_parl( 2 ) );
    }
    else
    {
@@ -188,7 +275,7 @@ HB_FUNC( SETFRAMERATELIMIT )
 {
    sfWindow* window = hb_sfWindow_param( 1 );
 
-   if( window && hb_param( 2, HB_IT_NUMERIC )  != NULL )
+   if( window && hb_param( 2, HB_IT_INTEGER ) != NULL )
    {
       sfWindow_setFramerateLimit( window, ( unsigned int ) hb_parni( 2 ) );
    }
@@ -203,7 +290,7 @@ HB_FUNC( SETJOYSTICKTHRESHOLD )
 {
    sfWindow* window = hb_sfWindow_param( 1 );
 
-   if( window && hb_param( 2, HB_IT_NUMERIC )  != NULL )
+   if( window && hb_param( 2, HB_IT_NUMERIC ) != NULL )
    {
       sfWindow_setJoystickThreshold( window, ( float ) hb_parnd( 2 ) );
    }
@@ -218,7 +305,7 @@ HB_FUNC( SETACTIVE )
 {
    sfWindow* window = hb_sfWindow_param( 1 );
 
-   if( window && hb_param( 2, HB_IT_LOGICAL )  != NULL )
+   if( window && hb_param( 2, HB_IT_LOGICAL ) != NULL )
    {
       hb_retl( sfWindow_setActive( window, hb_parl( 2 ) ) );
    }
@@ -246,7 +333,7 @@ HB_FUNC( REQUESTFOCUS )
 // sfBool sfWindow_hasFocus(const sfWindow* window);
 HB_FUNC( HASFOCUS )
 {
-   sfWindow* window = hb_sfWindow_param( 1 );
+   const sfWindow* window = hb_sfWindow_param( 1 );
 
    if( window )
    {
