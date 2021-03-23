@@ -81,23 +81,115 @@ HB_FUNC( CREATEUNICODE )
 // sfWindow* sfWindow_createFromHandle(sfWindowHandle handle, const sfContextSettings* settings);
 
 // void sfWindow_destroy(sfWindow* window);
+/* This function is in the file core.c */
 
 // void sfWindow_close(sfWindow* window);
+HB_FUNC( CLOSE )
+{
+   sfWindow* window = hb_sfWindow_param( 1 );
+
+   if( window )
+   {
+      sfWindow_close( window );
+   }
+   else
+   {
+      hb_errRT_BASE_SubstR( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+   }
+}
 
 // sfBool sfWindow_isOpen(const sfWindow* window);
+HB_FUNC( ISOPEN )
+{
+   const sfWindow* window = hb_sfWindow_param( 1 );
+
+   if( window )
+   {
+      hb_retl( sfWindow_isOpen( window ) );
+   }
+   else
+   {
+      hb_errRT_BASE_SubstR( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+   }
+}
 
 // sfContextSettings sfWindow_getSettings(const sfWindow* window);
+HB_FUNC( GETSETTINGS )
+{
+   const sfWindow* window = hb_sfWindow_param( 1 );
+
+   if( window )
+   {
+      sfContextSettings sfcontextsettings = sfWindow_getSettings( window );
+
+      PHB_ITEM info = hb_itemArrayNew( 7 );
+
+      hb_arraySetNI( info, 1, ( unsigned int ) sfcontextsettings.depthBits );
+      hb_arraySetNI( info, 2, ( unsigned int ) sfcontextsettings.stencilBits );
+      hb_arraySetNI( info, 3, ( unsigned int ) sfcontextsettings.antialiasingLevel );
+      hb_arraySetNI( info, 4, ( unsigned int ) sfcontextsettings.majorVersion );
+      hb_arraySetNI( info, 5, ( unsigned int ) sfcontextsettings.minorVersion );
+      hb_arraySetNI( info, 6, ( unsigned int ) sfcontextsettings.attributeFlags );
+      hb_arraySetL( info, 7,                   sfcontextsettings.sRgbCapable );
+
+      hb_itemReturnRelease( info );
+   }
+   else
+   {
+      hb_errRT_BASE_SubstR( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+   }
+}
 
 // sfBool sfWindow_pollEvent(sfWindow* window, sfEvent* event);
 
 // sfBool sfWindow_waitEvent(sfWindow* window, sfEvent* event);
 
 // sfVector2i sfWindow_getPosition(const sfWindow* window);
+HB_FUNC( GETPOSITION )
+{
+   const sfWindow* window = hb_sfWindow_param( 1 );
+
+   if( window )
+   {
+      sfVector2i sfvector2i = sfWindow_getPosition( window );
+
+      PHB_ITEM info = hb_itemArrayNew( 2 );
+
+      hb_arraySetNI( info, 1, sfvector2i.x );
+      hb_arraySetNI( info, 2, sfvector2i.y );
+
+      hb_itemReturnRelease( info );
+   }
+   else
+   {
+      hb_errRT_BASE_SubstR( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+   }
+}
 
 // void sfWindow_setPosition(sfWindow* window, sfVector2i position);
+HB_FUNC( SETPOSITION )
+{
+   PHB_ITEM pItem;
+
+   sfWindow* window = hb_sfWindow_param( 1 );
+
+   if( window && ( pItem = hb_param( 2, HB_IT_ARRAY ) ) != NULL && hb_arrayLen( pItem ) == 2 )
+   {
+      sfVector2i position;
+
+      position.x = hb_arrayGetNI( pItem, 1 );
+      position.y = hb_arrayGetNI( pItem, 2 );
+
+      sfWindow_setPosition( window, position );
+   }
+   else
+   {
+      hb_errRT_BASE_SubstR( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+   }
+}
 
 // sfVector2u sfWindow_getSize(const sfWindow* window);
-HB_FUNC( getSize )
+HB_FUNC( GETSIZE )
 {
    const sfWindow* window = hb_sfWindow_param( 1 );
 
@@ -107,11 +199,10 @@ HB_FUNC( getSize )
 
       PHB_ITEM info = hb_itemArrayNew( 2 );
 
-      hb_arraySetNI( info, 1, ( unsigned int) sfvector2u.x );
+      hb_arraySetNI( info, 1, ( unsigned int ) sfvector2u.x );
       hb_arraySetNI( info, 2, ( unsigned int ) sfvector2u.y );
 
       hb_itemReturnRelease( info );
-
    }
    else
    {
