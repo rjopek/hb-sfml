@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Window
-permalink: Window
+permalink: window
 ---
 
 # **Function reference Window**
