@@ -11,7 +11,13 @@ title: "hb-sfml"
 
 View the project on [GitHub](https://github.com/rjopek/hb-sfml)
 
+### Function reference 2.5.1
+
+> - [Window](window "Window")
+
 [![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](LICENSE)
+
+This site is based on the original [CSFM](https://github.com/SFML/CSFML/tree/master/include/SFML) documentation from files *.h.
 
 License MIT is obviously applied only for this repository, not what it builds.
 
