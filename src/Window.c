@@ -9,7 +9,7 @@
 #include "hbsfml.h"
 
 // sfWindow* sfWindow_create(sfVideoMode mode, const char* title, sfUint32 style, const sfContextSettings* settings);
-HB_FUNC( SFWINDOW_CREATE )
+HB_FUNC( CREATE )
 {
    PHB_ITEM pItem1, pItem2;
 
@@ -43,6 +43,40 @@ HB_FUNC( SFWINDOW_CREATE )
 }
 
 // sfWindow* sfWindow_createUnicode(sfVideoMode mode, const sfUint32* title, sfUint32 style, const sfContextSettings* settings);
+HB_FUNC( CREATEUNICODE )
+{
+   PHB_ITEM pItem1, pItem2;
+
+   if( ( pItem1 = hb_param( 1, HB_IT_ARRAY ) ) != NULL && hb_arrayLen( pItem1 ) == 3 &&
+                  hb_param( 2, HB_IT_STRING )  != NULL &&
+                  hb_param( 3, HB_IT_INTEGER ) != NULL &&
+       ( pItem2 = hb_param( 4, HB_IT_ARRAY ) ) != NULL && hb_arrayLen( pItem2 ) == 7 )
+   {
+      sfVideoMode mode;
+
+      mode.width        = ( unsigned int ) hb_arrayGetNI( pItem1, 1 );
+      mode.height       = ( unsigned int ) hb_arrayGetNI( pItem1, 2 );
+      mode.bitsPerPixel = ( unsigned int ) hb_arrayGetNI( pItem1, 3 );
+
+      sfContextSettings settings;
+
+      settings.depthBits         = ( unsigned int ) hb_arrayGetNI( pItem2, 1 );
+      settings.stencilBits       = ( unsigned int ) hb_arrayGetNI( pItem2, 2 );
+      settings.antialiasingLevel = ( unsigned int ) hb_arrayGetNI( pItem2, 3 );
+      settings.majorVersion      = ( unsigned int ) hb_arrayGetNI( pItem2, 4 );
+      settings.minorVersion      = ( unsigned int ) hb_arrayGetNI( pItem2, 5 );
+      settings.attributeFlags    = ( unsigned int ) hb_arrayGetNI( pItem2, 6 );
+      settings.sRgbCapable       =                  hb_arrayGetL( pItem2, 7 );
+
+      const sfUint32 title;
+      hb_sfWindow_ret( sfWindow_createUnicode( mode, &title, ( unsigned int ) hb_parni( 3 ), &settings  ) );
+      hb_storni( title, 2 );
+   }
+   else
+   {
+      hb_errRT_BASE_SubstR( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+   }
+}
 
 // sfWindow* sfWindow_createFromHandle(sfWindowHandle handle, const sfContextSettings* settings);
 
@@ -73,23 +107,114 @@ HB_FUNC( SFWINDOW_CREATE )
 // void sfWindow_setIcon(sfWindow* window, unsigned int width, unsigned int height, const sfUint8* pixels);
 
 // void sfWindow_setVisible(sfWindow* window, sfBool visible);
+HB_FUNC( SETVISIBLE )
+{
+   sfWindow* window = hb_sfWindow_param( 1 );
+
+   if( window && hb_param( 2, HB_IT_LOGICAL )  != NULL )
+   {
+      sfWindow_setVisible( window, hb_parl( 2 ) );
+   }
+   else
+   {
+      hb_errRT_BASE_SubstR( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+   }
+}
 
 // void sfWindow_setVerticalSyncEnabled(sfWindow* window, sfBool enabled);
+HB_FUNC( SETVERTICALSYNCENABLED )
+{
+   sfWindow* window = hb_sfWindow_param( 1 );
+
+   if( window && hb_param( 2, HB_IT_LOGICAL )  != NULL )
+   {
+      sfWindow_setVerticalSyncEnabled( window, hb_parl( 2 ) );
+   }
+   else
+   {
+      hb_errRT_BASE_SubstR( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+   }
+}
 
 // void sfWindow_setMouseCursorVisible(sfWindow* window, sfBool visible);
+HB_FUNC( SETMOUSECURSORVISIBLE )
+{
+   sfWindow* window = hb_sfWindow_param( 1 );
+
+   if( window && hb_param( 2, HB_IT_LOGICAL )  != NULL )
+   {
+      sfWindow_setMouseCursorVisible( window, hb_parl( 2 ) );
+   }
+   else
+   {
+      hb_errRT_BASE_SubstR( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+   }
+}
 
 // void sfWindow_setMouseCursorGrabbed(sfWindow* window, sfBool grabbed);
+HB_FUNC( SETMOUSECURSORGRABBED )
+{
+   sfWindow* window = hb_sfWindow_param( 1 );
+
+   if( window && hb_param( 2, HB_IT_LOGICAL )  != NULL )
+   {
+      sfWindow_setMouseCursorGrabbed( window, hb_parl( 2 ) );
+   }
+   else
+   {
+      hb_errRT_BASE_SubstR( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+   }
+}
 
 // void sfWindow_setMouseCursor(sfWindow* window, const sfCursor* cursor);
 
 // void sfWindow_setKeyRepeatEnabled(sfWindow* window, sfBool enabled);
+HB_FUNC( SETKEYREPEATENABLED )
+{
+   sfWindow* window = hb_sfWindow_param( 1 );
+
+   if( window && hb_param( 2, HB_IT_LOGICAL )  != NULL )
+   {
+      hb_retl( sfWindow_setKeyRepeatEnabled( window, hb_parl( 2 ) ) );
+   }
+   else
+   {
+      hb_errRT_BASE_SubstR( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+   }
+}
 
 // void sfWindow_setFramerateLimit(sfWindow* window, unsigned int limit);
+HB_FUNC( SETFRAMERATELIMIT )
+{
+   sfWindow* window = hb_sfWindow_param( 1 );
+
+   if( window && hb_param( 2, HB_IT_NUMERIC )  != NULL )
+   {
+      sfWindow_setFramerateLimit( window, ( unsigned int ) hb_parni( 2 ) );
+   }
+   else
+   {
+      hb_errRT_BASE_SubstR( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+   }
+}
 
 // void sfWindow_setJoystickThreshold(sfWindow* window, float threshold);
+HB_FUNC( SETJOYSTICKTHRESHOLD )
+{
+   sfWindow* window = hb_sfWindow_param( 1 );
+
+   if( window && hb_param( 2, HB_IT_NUMERIC )  != NULL )
+   {
+      sfWindow_setJoystickThreshold( window, ( float ) hb_parnd( 2 ) );
+   }
+   else
+   {
+      hb_errRT_BASE_SubstR( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+   }
+}
 
 // sfBool sfWindow_setActive(sfWindow* window, sfBool active);
-HB_FUNC( SFWINDOW_SETACTIVE )
+HB_FUNC( SETACTIVE )
 {
    sfWindow* window = hb_sfWindow_param( 1 );
 
@@ -104,7 +229,7 @@ HB_FUNC( SFWINDOW_SETACTIVE )
 }
 
 // void sfWindow_requestFocus(sfWindow* window);
-HB_FUNC( SFWINDOW_REQUESTFOCUS )
+HB_FUNC( REQUESTFOCUS )
 {
    sfWindow* window = hb_sfWindow_param( 1 );
 
@@ -119,7 +244,33 @@ HB_FUNC( SFWINDOW_REQUESTFOCUS )
 }
 
 // sfBool sfWindow_hasFocus(const sfWindow* window);
+HB_FUNC( HASFOCUS )
+{
+   sfWindow* window = hb_sfWindow_param( 1 );
+
+   if( window )
+   {
+      hb_retl( sfWindow_hasFocus( window ) );
+   }
+   else
+   {
+      hb_errRT_BASE_SubstR( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+   }
+}
 
 // void sfWindow_display(sfWindow* window);
+HB_FUNC( DISPLAY )
+{
+   sfWindow* window = hb_sfWindow_param( 1 );
+
+   if( window )
+   {
+      sfWindow_display( window );
+   }
+   else
+   {
+      hb_errRT_BASE_SubstR( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+   }
+}
 
 // sfWindowHandle sfWindow_getSystemHandle(const sfWindow* window);
