@@ -8,6 +8,7 @@
 
 #include "hbsfml.h"
 
+/* sfWindow */
 static HB_GARBAGE_FUNC( hb_sfWindow_destructor )
 {
    sfWindow ** ppSfWindow = ( sfWindow ** ) Cargo;
@@ -32,11 +33,11 @@ sfWindow * hb_sfWindowItemGet( PHB_ITEM pItem )
    return ppSfWindow ? *ppSfWindow : NULL;
 }
 
-PHB_ITEM hb_sfWindowItemPut( PHB_ITEM pItem, sfWindow * psfWindow )
+PHB_ITEM hb_sfWindowItemPut( PHB_ITEM pItem, sfWindow * pSfWindow )
 {
    sfWindow ** ppSfWindow = ( sfWindow ** ) hb_gcAllocate( sizeof( sfWindow * ), &s_gcSfWindowFuncs );
 
-   *ppSfWindow = psfWindow;
+   *ppSfWindow = pSfWindow;
    return hb_itemPutPtrGC( pItem, ppSfWindow );
 }
 
@@ -55,9 +56,9 @@ sfWindow * hb_sfWindow_param( int iParam )
    }
 }
 
-void hb_sfWindow_ret( sfWindow * psfWindow )
+void hb_sfWindow_ret( sfWindow * pSfWindow )
 {
-   hb_sfWindowItemPut( hb_stackReturnItem(), psfWindow );
+   hb_sfWindowItemPut( hb_stackReturnItem(), pSfWindow );
 }
 
 HB_FUNC( sfWindow_DESTROY )
@@ -68,6 +69,74 @@ HB_FUNC( sfWindow_DESTROY )
    {
       sfWindow_destroy( *ppSfWindow );
       *ppSfWindow = NULL;
+   }
+   else
+   {
+      hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+   }
+}
+
+/* sfContext */
+static HB_GARBAGE_FUNC( hb_sfContext_destructor )
+{
+   sfContext ** ppSfContext = ( sfContext ** ) Cargo;
+
+   if( *ppSfContext )
+   {
+      sfContext_destroy( *ppSfContext );
+      *ppSfContext = NULL;
+   }
+}
+
+static const HB_GC_FUNCS s_gcSfContextFuncs =
+{
+   hb_sfContext_destructor,
+   hb_gcDummyMark
+};
+
+sfContext * hb_sfContextItemGet( PHB_ITEM pItem )
+{
+   sfContext ** ppSfContext = ( sfContext ** ) hb_itemGetPtrGC( pItem, &s_gcSfContextFuncs );
+
+   return ppSfContext ? *ppSfContext : NULL;
+}
+
+PHB_ITEM hb_sfContextItemPut( PHB_ITEM pItem, sfContext * pSfContext )
+{
+   sfContext ** ppSfContext = ( sfContext ** ) hb_gcAllocate( sizeof( sfContext * ), &s_gcSfContextFuncs );
+
+   *ppSfContext = pSfContext;
+   return hb_itemPutPtrGC( pItem, ppSfContext );
+}
+
+sfContext * hb_sfContext_param( int iParam )
+{
+   sfContext ** ppSfContext = ( sfContext ** ) hb_parptrGC( &s_gcSfContextFuncs, iParam );
+
+   if( ppSfContext && *ppSfContext )
+   {
+      return *ppSfContext;
+   }
+   else
+   {
+      hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+      return NULL;
+   }
+}
+
+void hb_sfContext_ret( sfContext * pSfContext )
+{
+   hb_sfContextItemPut( hb_stackReturnItem(), pSfContext );
+}
+
+HB_FUNC( SFCONTEXT_DESTROY )
+{
+   sfContext ** ppSfContext = ( sfContext ** ) hb_parptrGC( &s_gcSfContextFuncs, 1 );
+
+   if( ppSfContext && *ppSfContext )
+   {
+      sfContext_destroy( *ppSfContext );
+      *ppSfContext = NULL;
    }
    else
    {

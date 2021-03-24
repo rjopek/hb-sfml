@@ -16,6 +16,11 @@ extern HB_EXPORT PHB_ITEM    hb_sfWindowItemPut( PHB_ITEM pItem, sfWindow * pSfW
 extern HB_EXPORT sfWindow *  hb_sfWindow_param( int iParam );
 extern HB_EXPORT void        hb_sfWindow_ret( sfWindow * );
 
+extern HB_EXPORT sfContext *  hb_sfContextItemGet( PHB_ITEM pItem );
+extern HB_EXPORT PHB_ITEM     hb_sfContextItemPut( PHB_ITEM pItem, sfContext * pSfContext );
+extern HB_EXPORT sfContext *  hb_sfContext_param( int iParam );
+extern HB_EXPORT void         hb_sfContext_ret( sfContext * );
+
 HB_EXTERN_END
 
 #endif /* HB_SFML_H_ */

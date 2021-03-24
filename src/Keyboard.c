@@ -9,6 +9,27 @@
 #include "hbsfml.h"
 
 // sfBool sfKeyboard_isKeyPressed(sfKeyCode key);
+HB_FUNC( ISKEYPRESSED )
+{
+   if( hb_param( 1, HB_IT_INTEGER ) != NULL )
+   {
+      hb_retl( sfKeyboard_isKeyPressed( hb_parni( 1 ) ) );
+   }
+   else
+   {
+      hb_errRT_BASE_SubstR( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+   }
+}
 
 // void sfKeyboard_setVirtualKeyboardVisible(sfBool visible);
-
+HB_FUNC( SETVIRTUALKEYBOARDVISIBLE )
+{
+   if( hb_param( 1, HB_IT_LOGICAL ) != NULL )
+   {
+      sfKeyboard_setVirtualKeyboardVisible( hb_parl( 1 ) );
+   }
+   else
+   {
+      hb_errRT_BASE_SubstR( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+   }
+}
