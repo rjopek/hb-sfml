@@ -9,7 +9,7 @@
 #include "hbsfml.h"
 
 // sfWindow* sfWindow_create(sfVideoMode mode, const char* title, sfUint32 style, const sfContextSettings* settings);
-HB_FUNC( CREATE )
+HB_FUNC( SFWINDOW_CREATE )
 {
    PHB_ITEM pItem1, pItem2;
 
@@ -43,7 +43,7 @@ HB_FUNC( CREATE )
 }
 
 // sfWindow* sfWindow_createUnicode(sfVideoMode mode, const sfUint32* title, sfUint32 style, const sfContextSettings* settings);
-HB_FUNC( CREATEUNICODE )
+HB_FUNC( SFWINDOW_CREATEUNICODE )
 {
    PHB_ITEM pItem1, pItem2;
 
@@ -84,7 +84,7 @@ HB_FUNC( CREATEUNICODE )
 /* This function is in the file core.c */
 
 // void sfWindow_close(sfWindow* window);
-HB_FUNC( CLOSE )
+HB_FUNC( SFWINDOW_CLOSE )
 {
    sfWindow* window = hb_sfWindow_param( 1 );
 
@@ -99,7 +99,7 @@ HB_FUNC( CLOSE )
 }
 
 // sfBool sfWindow_isOpen(const sfWindow* window);
-HB_FUNC( ISOPEN )
+HB_FUNC( SFWINDOW_ISOPEN )
 {
    const sfWindow* window = hb_sfWindow_param( 1 );
 
@@ -114,7 +114,7 @@ HB_FUNC( ISOPEN )
 }
 
 // sfContextSettings sfWindow_getSettings(const sfWindow* window);
-HB_FUNC( GETSETTINGS )
+HB_FUNC( SFWINDOW_GETSETTINGS )
 {
    const sfWindow* window = hb_sfWindow_param( 1 );
 
@@ -145,7 +145,7 @@ HB_FUNC( GETSETTINGS )
 // sfBool sfWindow_waitEvent(sfWindow* window, sfEvent* event);
 
 // sfVector2i sfWindow_getPosition(const sfWindow* window);
-HB_FUNC( GETPOSITION )
+HB_FUNC( SFWINDOW_GETPOSITION )
 {
    const sfWindow* window = hb_sfWindow_param( 1 );
 
@@ -167,7 +167,7 @@ HB_FUNC( GETPOSITION )
 }
 
 // void sfWindow_setPosition(sfWindow* window, sfVector2i position);
-HB_FUNC( SETPOSITION )
+HB_FUNC( SFWINDOW_SETPOSITION )
 {
    PHB_ITEM pItem;
 
@@ -189,7 +189,7 @@ HB_FUNC( SETPOSITION )
 }
 
 // sfVector2u sfWindow_getSize(const sfWindow* window);
-HB_FUNC( GETSIZE )
+HB_FUNC( SFWINDOW_GETSIZE )
 {
    const sfWindow* window = hb_sfWindow_param( 1 );
 
@@ -211,7 +211,7 @@ HB_FUNC( GETSIZE )
 }
 
 // void sfWindow_setSize(sfWindow* window, sfVector2u size);
-HB_FUNC( SETSIZE )
+HB_FUNC( SFWINDOW_SETSIZE )
 {
    PHB_ITEM pItem;
 
@@ -233,7 +233,7 @@ HB_FUNC( SETSIZE )
 }
 
 // void sfWindow_setTitle(sfWindow* window, const char* title);
-HB_FUNC( SETTITLE )
+HB_FUNC( SFWINDOW_SETTITLE )
 {
    sfWindow* window = hb_sfWindow_param( 1 );
 
@@ -248,7 +248,7 @@ HB_FUNC( SETTITLE )
 }
 
 // void sfWindow_setUnicodeTitle(sfWindow* window, const sfUint32* title);
-HB_FUNC( SETUNICODETITLE )
+HB_FUNC( SFWINDOW_SETUNICODETITLE )
 {
    sfWindow* window = hb_sfWindow_param( 1 );
 
@@ -265,7 +265,7 @@ HB_FUNC( SETUNICODETITLE )
 }
 
 // void sfWindow_setIcon(sfWindow* window, unsigned int width, unsigned int height, const sfUint8* pixels);
-HB_FUNC( SETICON )
+HB_FUNC( SFWINDOW_SETICON )
 {
    sfWindow* window = hb_sfWindow_param( 1 );
 
@@ -285,7 +285,7 @@ HB_FUNC( SETICON )
 }
 
 // void sfWindow_setVisible(sfWindow* window, sfBool visible);
-HB_FUNC( SETVISIBLE )
+HB_FUNC( SFWINDOW_SETVISIBLE )
 {
    sfWindow* window = hb_sfWindow_param( 1 );
 
@@ -300,7 +300,7 @@ HB_FUNC( SETVISIBLE )
 }
 
 // void sfWindow_setVerticalSyncEnabled(sfWindow* window, sfBool enabled);
-HB_FUNC( SETVERTICALSYNCENABLED )
+HB_FUNC( SFWINDOW_SETVERTICALSYNCENABLED )
 {
    sfWindow* window = hb_sfWindow_param( 1 );
 
@@ -315,7 +315,7 @@ HB_FUNC( SETVERTICALSYNCENABLED )
 }
 
 // void sfWindow_setMouseCursorVisible(sfWindow* window, sfBool visible);
-HB_FUNC( SETMOUSECURSORVISIBLE )
+HB_FUNC( SFWINDOW_SETMOUSECURSORVISIBLE )
 {
    sfWindow* window = hb_sfWindow_param( 1 );
 
@@ -330,7 +330,7 @@ HB_FUNC( SETMOUSECURSORVISIBLE )
 }
 
 // void sfWindow_setMouseCursorGrabbed(sfWindow* window, sfBool grabbed);
-HB_FUNC( SETMOUSECURSORGRABBED )
+HB_FUNC( SFWINDOW_SETMOUSECURSORGRABBED )
 {
    sfWindow* window = hb_sfWindow_param( 1 );
 
@@ -347,7 +347,7 @@ HB_FUNC( SETMOUSECURSORGRABBED )
 // void sfWindow_setMouseCursor(sfWindow* window, const sfCursor* cursor);
 
 // void sfWindow_setKeyRepeatEnabled(sfWindow* window, sfBool enabled);
-HB_FUNC( SETKEYREPEATENABLED )
+HB_FUNC( SFWINDOW_SETKEYREPEATENABLED )
 {
    sfWindow* window = hb_sfWindow_param( 1 );
 
@@ -362,7 +362,7 @@ HB_FUNC( SETKEYREPEATENABLED )
 }
 
 // void sfWindow_setFramerateLimit(sfWindow* window, unsigned int limit);
-HB_FUNC( SETFRAMERATELIMIT )
+HB_FUNC( SFWINDOW_SETFRAMERATELIMIT )
 {
    sfWindow* window = hb_sfWindow_param( 1 );
 
@@ -377,7 +377,7 @@ HB_FUNC( SETFRAMERATELIMIT )
 }
 
 // void sfWindow_setJoystickThreshold(sfWindow* window, float threshold);
-HB_FUNC( SETJOYSTICKTHRESHOLD )
+HB_FUNC( SFWINDOW_SETJOYSTICKTHRESHOLD )
 {
    sfWindow* window = hb_sfWindow_param( 1 );
 
@@ -392,7 +392,7 @@ HB_FUNC( SETJOYSTICKTHRESHOLD )
 }
 
 // sfBool sfWindow_setActive(sfWindow* window, sfBool active);
-HB_FUNC( SETACTIVE )
+HB_FUNC( SFWINDOW_SETACTIVE )
 {
    sfWindow* window = hb_sfWindow_param( 1 );
 
@@ -407,7 +407,7 @@ HB_FUNC( SETACTIVE )
 }
 
 // void sfWindow_requestFocus(sfWindow* window);
-HB_FUNC( REQUESTFOCUS )
+HB_FUNC( SFWINDOW_REQUESTFOCUS )
 {
    sfWindow* window = hb_sfWindow_param( 1 );
 
@@ -422,7 +422,7 @@ HB_FUNC( REQUESTFOCUS )
 }
 
 // sfBool sfWindow_hasFocus(const sfWindow* window);
-HB_FUNC( HASFOCUS )
+HB_FUNC( SFWINDOW_HASFOCUS )
 {
    const sfWindow* window = hb_sfWindow_param( 1 );
 
@@ -437,7 +437,7 @@ HB_FUNC( HASFOCUS )
 }
 
 // void sfWindow_display(sfWindow* window);
-HB_FUNC( DISPLAY )
+HB_FUNC( SFWINDOW_DISPLAY )
 {
    sfWindow* window = hb_sfWindow_param( 1 );
 
