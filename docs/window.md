@@ -5,5 +5,3 @@ permalink: window
 ---
 
 # **Function reference Window**
-
-## Basic shapes drawing functions
