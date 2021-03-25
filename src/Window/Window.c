@@ -32,7 +32,7 @@ HB_FUNC( SFWINDOW_CREATE )
       settings.majorVersion      = ( unsigned int ) hb_arrayGetNI( pItem2, 4 );
       settings.minorVersion      = ( unsigned int ) hb_arrayGetNI( pItem2, 5 );
       settings.attributeFlags    = ( unsigned int ) hb_arrayGetNI( pItem2, 6 );
-      settings.sRgbCapable       =                  hb_arrayGetL( pItem2, 7 );
+      settings.sRgbCapable       =                  hb_arrayGetL(  pItem2, 7 );
 
       hb_sfWindow_ret( sfWindow_create( mode, hb_parc( 2 ), ( unsigned int ) hb_parni( 3 ), &settings  ) );
    }

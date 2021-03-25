@@ -15,6 +15,7 @@
 -deppkgname=sfml:sfml{pacman}
 -deppkgname=sfml:mingw-w64-i686-sfml{msys2&x86}
 -deppkgname=sfml:mingw-w64-x86_64-sfml{msys2&x86_64}
+-depkeyhead=sfml:SFML/Graphics.h
 -depkeyhead=sfml:SFML/Window.h
 -depcontrol=sfml:${HB_WITH_SFML}
 -depincpath=sfml:/usr/include
@@ -30,7 +31,8 @@
 
 -hbx=include/${hb_name}.hbx
 
-src/*.c
+src/Graphics/*.c
+src/Window/*.c
 src/*.prg
 
 $hb_pkg_dynlib.hbm

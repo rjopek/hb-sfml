@@ -8,6 +8,74 @@
 
 #include "hbsfml.h"
 
+/* sfRenderWindow */
+static HB_GARBAGE_FUNC( hb_sfRenderWindow_destructor )
+{
+   sfRenderWindow ** ppSfRenderWindow = ( sfRenderWindow ** ) Cargo;
+
+   if( *ppSfRenderWindow )
+   {
+      sfRenderWindow_destroy( *ppSfRenderWindow );
+      *ppSfRenderWindow = NULL;
+   }
+}
+
+static const HB_GC_FUNCS s_gcSfRenderWindowFuncs =
+{
+   hb_sfRenderWindow_destructor,
+   hb_gcDummyMark
+};
+
+sfRenderWindow * hb_sfRenderWindowItemGet( PHB_ITEM pItem )
+{
+   sfRenderWindow ** ppSfRenderWindow = ( sfRenderWindow ** ) hb_itemGetPtrGC( pItem, &s_gcSfRenderWindowFuncs );
+
+   return ppSfRenderWindow ? *ppSfRenderWindow : NULL;
+}
+
+PHB_ITEM hb_sfRenderWindowItemPut( PHB_ITEM pItem, sfRenderWindow * pSfRenderWindow )
+{
+   sfRenderWindow ** ppSfRenderWindow = ( sfRenderWindow ** ) hb_gcAllocate( sizeof( sfRenderWindow * ), &s_gcSfRenderWindowFuncs );
+
+   *ppSfRenderWindow = pSfRenderWindow;
+   return hb_itemPutPtrGC( pItem, ppSfRenderWindow );
+}
+
+sfRenderWindow * hb_sfRenderWindow_param( int iParam )
+{
+   sfRenderWindow ** ppSfRenderWindow = ( sfRenderWindow ** ) hb_parptrGC( &s_gcSfRenderWindowFuncs, iParam );
+
+   if( ppSfRenderWindow && *ppSfRenderWindow )
+   {
+      return *ppSfRenderWindow;
+   }
+   else
+   {
+      hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+      return NULL;
+   }
+}
+
+void hb_sfRenderWindow_ret( sfRenderWindow * pSfRenderWindow )
+{
+   hb_sfWindowItemPut( hb_stackReturnItem(), pSfRenderWindow );
+}
+
+HB_FUNC( SFCONTEXT_DESTROY )
+{
+   sfRenderWindow ** ppSfRenderWindow = ( sfRenderWindow ** ) hb_parptrGC( &s_gcSfRenderWindowFuncs, 1 );
+
+   if( ppSfRenderWindow && *ppSfRenderWindow )
+   {
+      sfRenderWindow_destroy( *ppSfRenderWindow );
+      *ppSfRenderWindow = NULL;
+   }
+   else
+   {
+      hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+   }
+}
+
 /* sfWindow */
 static HB_GARBAGE_FUNC( hb_sfWindow_destructor )
 {
