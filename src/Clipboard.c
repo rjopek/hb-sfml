@@ -9,7 +9,7 @@
 #include "hbsfml.h"
 
 // const char* sfClipboard_getString();
-HB_FUNC( GETSTRING )
+HB_FUNC( SFCLIPBOARD_GETSTRING )
 {
    hb_retc( sfClipboard_getString() );
 }
@@ -17,7 +17,7 @@ HB_FUNC( GETSTRING )
 // const sfUint32* sfClipboard_getUnicodeString();
 
 // void sfClipboard_setString(const char* text);
-HB_FUNC( SETSTRING )
+HB_FUNC( SFCLIPBOARD_SETSTRING )
 {
    if( hb_param( 1, HB_IT_STRING ) != NULL )
    {

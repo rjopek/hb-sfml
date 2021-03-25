@@ -9,7 +9,7 @@
 #include "hbsfml.h"
 
 // sfBool sfKeyboard_isKeyPressed(sfKeyCode key);
-HB_FUNC( ISKEYPRESSED )
+HB_FUNC( SFKEYBOARD_ISKEYPRESSED )
 {
    if( hb_param( 1, HB_IT_INTEGER ) != NULL )
    {
@@ -22,7 +22,7 @@ HB_FUNC( ISKEYPRESSED )
 }
 
 // void sfKeyboard_setVirtualKeyboardVisible(sfBool visible);
-HB_FUNC( SETVIRTUALKEYBOARDVISIBLE )
+HB_FUNC( SFKEYBOARD_SETVIRTUALKEYBOARDVISIBLE )
 {
    if( hb_param( 1, HB_IT_LOGICAL ) != NULL )
    {
