@@ -11,6 +11,26 @@
 // sfTexture* sfTexture_create(unsigned int width, unsigned int height);
 
 // sfTexture* sfTexture_createFromFile(const char* filename, const sfIntRect* area);
+HB_FUNC( SFTEXTURE_CREATEFROMFILE )
+{
+   PHB_ITEM pItem;
+
+   if( hb_param( 1, HB_IT_STRING )  != NULL && ( pItem = hb_param( 2, HB_IT_ARRAY ) ) != NULL && hb_arrayLen( pItem ) == 4 )
+   {
+      sfIntRect area;
+
+      area.left   = hb_arrayGetNI( pItem, 1 );
+      area.top    = hb_arrayGetNI( pItem, 2 );
+      area.width  = hb_arrayGetNI( pItem, 3 );
+      area.height = hb_arrayGetNI( pItem, 4 );
+
+      hb_sfTexture_ret( sfTexture_createFromFile( hb_parc( 1 ), &area ) );
+   }
+   else
+   {
+      hb_errRT_BASE_SubstR( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+   }
+}
 
 // sfTexture* sfTexture_createFromMemory(const void* data, size_t sizeInBytes, const sfIntRect* area);
 
@@ -21,6 +41,7 @@
 // sfTexture* sfTexture_copy(const sfTexture* texture);
 
 // void sfTexture_destroy(sfTexture* texture);
+/* This function is in the file core.c */
 
 // sfVector2u sfTexture_getSize(const sfTexture* texture);
 

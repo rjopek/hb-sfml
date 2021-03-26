@@ -47,10 +47,24 @@ HB_FUNC( SFRENDERWINDOW_CREATE )
 // sfRenderWindow* sfRenderWindow_createFromHandle(sfWindowHandle handle, const sfContextSettings* settings);
 
 // void sfRenderWindow_destroy(sfRenderWindow* renderWindow);
+/* This function is in the file core.c */
 
 // void sfRenderWindow_close(sfRenderWindow* renderWindow);
 
 // sfBool sfRenderWindow_isOpen(const sfRenderWindow* renderWindow);
+HB_FUNC( SFRENDERWINDOW_ISOPEN )
+{
+   sfRenderWindow* renderWindow = hb_sfRenderWindow_param( 1 );
+
+   if( renderWindow )
+   {
+      hb_retl( sfRenderWindow_isOpen( renderWindow ) );
+   }
+   else
+   {
+      hb_errRT_BASE_SubstR( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+   }
+}
 
 // sfContextSettings sfRenderWindow_getSettings(const sfRenderWindow* renderWindow);
 
