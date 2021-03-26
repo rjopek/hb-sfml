@@ -26,6 +26,7 @@ HB_FUNC( SFMUSIC_CREATEFROMFILE )
 // sfMusic* sfMusic_createFromStream(sfInputStream* stream);
 
 // void sfMusic_destroy(sfMusic* music);
+/* This function is in the file core.c */
 
 // void sfMusic_setLoop(sfMusic* music, sfBool loop);
 

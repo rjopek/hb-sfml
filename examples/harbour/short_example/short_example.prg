@@ -1,5 +1,8 @@
 #include "hbsfml.ch"
 
+#define EventType 1
+#define type      1
+
 PROCEDURE Main()
 
    LOCAL aMode = { 800, 600, 32 }
@@ -9,7 +12,7 @@ PROCEDURE Main()
    LOCAL pFont
    LOCAL pText
    LOCAL pMusic
-   LOCAL aEvent
+   LOCAL aEvent := {}
 
    /* Create the main window */
    pWindow := sfRenderWindow_create( aMode, "SFML window", sfResize + sfClose, NIL )
@@ -50,34 +53,35 @@ PROCEDURE Main()
    DO WHILE sfRenderWindow_isOpen( pWindow )
 
       /* Process events */
-      DO WHILE( sfRenderWindow_pollEvent( window, &event ) )
+      DO WHILE sfRenderWindow_pollEvent( pWindow, aEvent )
 
          /* Close window : exit */
-         IF event.type == sfEvtClosed
-            sfRenderWindow_close( window )
+         IF aEvent[ EventType ][ type ] == sfEvtClosed
+            sfRenderWindow_close( pWindow )
          ENDIF
 
       ENDDO
 
       /* Clear the screen */
-      sfRenderWindow_clear( window, sfBlack )
+      sfRenderWindow_clear( pWindow, sfBlack )
 
       /* Draw the sprite */
-      sfRenderWindow_drawSprite( window, sprite, NULL )
+      sfRenderWindow_drawSprite( pWindow, pSprite, NIL )
 
       /* Draw the text */
-      sfRenderWindow_drawText( window, text, NULL )
+      sfRenderWindow_drawText( pWindow, pText, NIL )
 
       /* Update the window */
-      sfRenderWindow_display( window )
+      sfRenderWindow_display( pWindow )
+
    ENDDO
 
    /* Cleanup resources */
-   sfMusic_destroy( music )
-   sfText_destroy( text )
-   sfFont_destroy( font )
-   sfSprite_destroy( sprite )
-   sfTexture_destroy( texture )
-   sfRenderWindow_destroy( window )
+   sfMusic_destroy( pMusic )
+   sfText_destroy( pText )
+   sfFont_destroy( pFont )
+   sfSprite_destroy( pSprite )
+   sfTexture_destroy( pTexture )
+   sfRenderWindow_destroy( pWindow )
 
    RETURN
