@@ -487,6 +487,74 @@ HB_FUNC( SFCONTEXT_DESTROY )
    }
 }
 
+/* Window/sfCursor */
+static HB_GARBAGE_FUNC( hb_sfCursor_destructor )
+{
+   sfCursor ** ppSfCursor = ( sfCursor ** ) Cargo;
+
+   if( *ppSfCursor )
+   {
+      sfCursor_destroy( *ppSfCursor );
+      *ppSfCursor = NULL;
+   }
+}
+
+static const HB_GC_FUNCS s_gcSfCursorFuncs =
+{
+   hb_sfCursor_destructor,
+   hb_gcDummyMark
+};
+
+sfCursor * hb_sfCursorItemGet( PHB_ITEM pItem )
+{
+   sfCursor ** ppSfCursor = ( sfCursor ** ) hb_itemGetPtrGC( pItem, &s_gcSfCursorFuncs );
+
+   return ppSfCursor ? *ppSfCursor : NULL;
+}
+
+PHB_ITEM hb_sfCursorItemPut( PHB_ITEM pItem, sfCursor * pSfCursor )
+{
+   sfCursor ** ppSfCursor = ( sfCursor ** ) hb_gcAllocate( sizeof( sfCursor * ), &s_gcSfCursorFuncs );
+
+   *ppSfCursor = pSfCursor;
+   return hb_itemPutPtrGC( pItem, ppSfCursor );
+}
+
+sfCursor * hb_sfCursor_param( int iParam )
+{
+   sfCursor ** ppSfCursor = ( sfCursor ** ) hb_parptrGC( &s_gcSfCursorFuncs, iParam );
+
+   if( ppSfCursor && *ppSfCursor )
+   {
+      return *ppSfCursor;
+   }
+   else
+   {
+      hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+      return NULL;
+   }
+}
+
+void hb_sfCursor_ret( sfCursor * pSfCursor )
+{
+   hb_sfCursorItemPut( hb_stackReturnItem(), pSfCursor );
+}
+
+HB_FUNC( SFCURSOR_DESTROY )
+{
+   sfCursor ** ppSfCursor = ( sfCursor ** ) hb_parptrGC( &s_gcSfCursorFuncs, 1 );
+
+   if( ppSfCursor && *ppSfCursor )
+   {
+      sfCursor_destroy( *ppSfCursor );
+      *ppSfCursor = NULL;
+   }
+   else
+   {
+      hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+   }
+}
+
 /* Window/sfWindow */
 static HB_GARBAGE_FUNC( hb_sfWindow_destructor )
 {

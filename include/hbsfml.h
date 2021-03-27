@@ -64,6 +64,12 @@ extern HB_EXPORT PHB_ITEM     hb_sfContextItemPut( PHB_ITEM pItem, sfContext * p
 extern HB_EXPORT sfContext *  hb_sfContext_param( int iParam );
 extern HB_EXPORT void         hb_sfContext_ret( sfContext * );
 
+/* Window/sfCursor */
+extern HB_EXPORT sfCursor *  hb_sfCursorItemGet( PHB_ITEM pItem );
+extern HB_EXPORT PHB_ITEM    hb_sfCursorItemPut( PHB_ITEM pItem, sfCursor * pSfCursor );
+extern HB_EXPORT sfCursor *  hb_sfCursor_param( int iParam );
+extern HB_EXPORT void        hb_sfCursor_ret( sfCursor * );
+
 HB_EXTERN_END
 
 #endif /* HB_SFML_H_ */

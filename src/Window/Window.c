@@ -345,6 +345,20 @@ HB_FUNC( SFWINDOW_SETMOUSECURSORGRABBED )
 }
 
 // void sfWindow_setMouseCursor(sfWindow* window, const sfCursor* cursor);
+HB_FUNC( SFWINDOW_SETMOUSECURSOR )
+{
+   sfWindow* window = hb_sfWindow_param( 1 );
+   const sfCursor* cursor = hb_sfCursor_param( 2 );
+
+   if( window && cursor )
+   {
+      sfWindow_setMouseCursor( window, cursor );
+   }
+   else
+   {
+      hb_errRT_BASE_SubstR( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+   }
+}
 
 // void sfWindow_setKeyRepeatEnabled(sfWindow* window, sfBool enabled);
 HB_FUNC( SFWINDOW_SETKEYREPEATENABLED )
