@@ -4,7 +4,7 @@ title: Window
 permalink: window
 ---
 
-#**Function Documentation Window**
+# **Function Documentation Window**
 
 # sfWindow_close()
 
@@ -129,7 +129,7 @@ This function is typically called after all OpenGL rendering has been done for t
 
 ```c
 
-sfVector2i sfWindow_getPosition(	const sfWindow* window	)
+sfVector2i sfWindow_getPosition( const sfWindow* window )
 
 ```
 
@@ -218,7 +218,7 @@ True if window has focus, false otherwise
 
 ```c
 
-sfBool sfWindow_isOpen(	const sfWindow* window	)
+sfBool sfWindow_isOpen( const sfWindow* window )
 
 ```
 
@@ -238,7 +238,7 @@ sfTrue if the window is opened, sfFalse if it has been closed
 
 ```c
 
-sfBool sfWindow_pollEvent(	sfWindow* window, sfEvent* event )
+sfBool sfWindow_pollEvent( sfWindow* window, sfEvent* event )
 
 ```
 
@@ -271,7 +271,7 @@ At any given time, only one window may have the input focus to receive input eve
 
 ```c
 
-sfBool sfWindow_setActive(	sfWindow* window, sfBool active )
+sfBool sfWindow_setActive( sfWindow* window, sfBool active )
 
 ```
 
@@ -420,7 +420,7 @@ Change the size of the rendering region of a window.
 
 ```c
 
-void sfWindow_setTitle(	sfWindow* window, const char* title )
+void sfWindow_setTitle( sfWindow* window, const char* title )
 
 ```
 
@@ -482,7 +482,7 @@ Show or hide a window.
 
 ```c
 
-sfBool sfWindow_waitEvent(	sfWindow* window, sfEvent* event )
+sfBool sfWindow_waitEvent( sfWindow* window, sfEvent* event )
 
 ```
 
@@ -498,3 +498,7 @@ This function is blocking: if there's no pending event then it will wait until a
 **Returns**
 
 sfFalse if any error occured
+
+<br>
+<br>
+<br>
