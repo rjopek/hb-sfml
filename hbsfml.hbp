@@ -9,6 +9,7 @@
 
 -depurlbase=sfml:https://www.sfml-dev.org/index.php
 -depurlbase=sfml:https://github.com/SFML/SFML
+-depurlbase=sfml:https://github.com/SFML/CSFML
 -deppkgname=sfml:sfml-dev{deb}
 -deppkgname=sfml:sfml-devel{rpm}
 -deppkgname=sfml:sfml{homebrew|pkgng}
@@ -23,8 +24,16 @@
 -depincpath=sfml:/usr/local/include
 -depincpath=sfml:/opt/local/include
 -depincpath=sfml:/usr/local/opt/include
+-depimplibs=sfml:../bin/csfml-audio-2.dll
+-depimplibs=sfml:../bin/csfml-graphics-2.dll
+-depimplibs=sfml:../bin/csfml-network-2.dll
+-depimplibs=sfml:../bin/csfml-system-2.dll
 -depimplibs=sfml:../bin/csfml-window-2.dll
--depimplibs=sfml:../lib/libcsfml-window.a
+-depimplibs=sfml:../lib/gcc/libcsfml-audio.a
+-depimplibs=sfml:../lib/gcc/libcsfml-graphics.a
+-depimplibs=sfml:../lib/gcc/libcsfml-network.a
+-depimplibs=sfml:../lib/gcc/libcsfml-system.a
+-depimplibs=sfml:../lib/gcc/libcsfml-window.a
 -depimplibd=sfml:sfml
 -depfinish=sfml
 

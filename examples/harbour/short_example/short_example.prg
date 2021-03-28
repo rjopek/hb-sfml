@@ -5,8 +5,9 @@
 
 PROCEDURE Main()
 
-   LOCAL aMode = { 800, 600, 32 }
    LOCAL pWindow
+   LOCAL aMode = { 800, 600, 32 }
+   LOCAL aContextSettings := { 0, 0, 0, 4, 5, 0, .F. }
    LOCAL pTexture
    LOCAL pSprite
    LOCAL pFont
@@ -15,7 +16,7 @@ PROCEDURE Main()
    LOCAL aEvent := {}
 
    /* Create the main window */
-   pWindow := sfRenderWindow_create( aMode, "SFML window", sfResize + sfClose, NIL )
+   pWindow := sfRenderWindow_create( aMode, "SFML window", sfResize + sfClose, aContextSettings )
    IF ! pWindow
       RETURN
    ENDIF

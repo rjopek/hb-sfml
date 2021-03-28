@@ -1,4 +1,4 @@
-description=hb-SFML bindings for Harbour
+description=hb-sfml bindings for Harbour
 
 incpaths=include
 headers=include/${hb_name}.ch
