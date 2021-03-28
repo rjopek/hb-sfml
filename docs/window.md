@@ -4,13 +4,13 @@ title: Window
 permalink: window
 ---
 
-# **Function Documentation Window**
+#**Function Documentation Window**
 
 # sfWindow_close()
 
 ```c
 
-void sfWindow_close( sfWindow * window )
+void sfWindow_close( sfWindow* window )
 
 ```
 
@@ -26,7 +26,7 @@ After calling this function, the sfWindow object remains valid, you must call sf
 
 ```c
 
-sfWindow* sfWindow_create( sfVideoMode mode, const char * title, sfUint32 style, const sfContextSettings * settings )
+sfWindow* sfWindow_create( sfVideoMode mode, const char* title, sfUint32 style, const sfContextSettings* settings )
 
 ```
 
@@ -51,7 +51,7 @@ A new sfWindow object
 
 ```c
 
-sfWindow* sfWindow_createFromHandle( sfWindowHandle handle, const sfContextSettings * settings )
+sfWindow* sfWindow_createFromHandle( sfWindowHandle handle, const sfContextSettings* settings )
 
 ```
 
@@ -74,7 +74,7 @@ A new sfWindow object
 
 ```c
 
-sfWindow* sfWindow_createUnicode( sfVideoMode mode, const sfUint32 * title, sfUint32 style, const sfContextSettings * settings )
+sfWindow* sfWindow_createUnicode( sfVideoMode mode, const sfUint32* title, sfUint32 style, const sfContextSettings* settings )
 
 ```
 
@@ -99,7 +99,7 @@ A new sfWindow object
 
 ```c
 
-void sfWindow_destroy( sfWindow * window )
+void sfWindow_destroy( sfWindow* window )
 
 ```
 
@@ -113,7 +113,7 @@ Destroy a window.
 
 ```c
 
-void sfWindow_display( sfWindow * window )
+void sfWindow_display( sfWindow* window )
 
 ```
 
@@ -129,7 +129,7 @@ This function is typically called after all OpenGL rendering has been done for t
 
 ```c
 
-sfVector2i sfWindow_getPosition(	const sfWindow * window	)
+sfVector2i sfWindow_getPosition(	const sfWindow* window	)
 
 ```
 
@@ -144,7 +144,7 @@ Position in pixels
 
 # sfWindow_getSettings()
 
-sfContextSettings sfWindow_getSettings( const sfWindow \* window )
+sfContextSettings sfWindow_getSettings( const sfWindow* window )
 
 Get the settings of the OpenGL context of a window.
 
@@ -162,7 +162,7 @@ Structure containing the OpenGL context settings
 
 ```c
 
-sfVector2u sfWindow_getSize( const sfWindow * window )
+sfVector2u sfWindow_getSize( const sfWindow* window )
 
 ```
 
@@ -182,7 +182,7 @@ Size in pixels
 
 ```c
 
-sfWindowHandle sfWindow_getSystemHandle( const sfWindow * window )
+sfWindowHandle sfWindow_getSystemHandle( const sfWindow* window )
 
 ```
 
@@ -202,7 +202,7 @@ System handle of the window
 
 ```c
 
-sfBool sfWindow_hasFocus( const sfWindow * window )
+sfBool sfWindow_hasFocus( const sfWindow* window )
 
 ```
 
@@ -218,13 +218,13 @@ True if window has focus, false otherwise
 
 ```c
 
-sfBool sfWindow_isOpen(	const sfWindow * window	)
+sfBool sfWindow_isOpen(	const sfWindow* window	)
 
 ```
 
 Tell whether or not a window is opened.
 
-This function **Returns** whether or not the window exists. Note that a hidden window (sfWindow_setVisible(sfFalse)) will return sfTrue.
+This function**Returns** whether or not the window exists. Note that a hidden window (sfWindow_setVisible(sfFalse)) will return sfTrue.
 
 **Parameters**
 
@@ -238,7 +238,7 @@ sfTrue if the window is opened, sfFalse if it has been closed
 
 ```c
 
-sfBool sfWindow_pollEvent(	sfWindow * window, sfEvent * event )
+sfBool sfWindow_pollEvent(	sfWindow* window, sfEvent* event )
 
 ```
 
@@ -259,7 +259,7 @@ sfTrue if an event was returned, or sfFalse if the event queue was empty
 
 ```c
 
-void sfWindow_requestFocus( sfWindow * window )
+void sfWindow_requestFocus( sfWindow* window )
 
 ```
 
@@ -271,7 +271,7 @@ At any given time, only one window may have the input focus to receive input eve
 
 ```c
 
-sfBool sfWindow_setActive(	sfWindow * window, sfBool 	active )
+sfBool sfWindow_setActive(	sfWindow* window, sfBool active )
 
 ```
 
@@ -292,7 +292,7 @@ sfTrue if operation was successful, sfFalse otherwise
 
 ```c
 
-void sfWindow_setFramerateLimit(	sfWindow * window, unsigned int 	limit )
+void sfWindow_setFramerateLimit( sfWindow* window, unsigned int limit )
 
 ```
 
@@ -310,7 +310,7 @@ limit Framerate limit, in frames per seconds (use 0 to disable limit)
 
 ```c
 
-void sfWindow_setIcon( sfWindow * window, unsigned int width, unsigned int height, const sfUint8 * pixels )
+void sfWindow_setIcon( sfWindow* window, unsigned int width, unsigned int height, const sfUint8* pixels )
 
 ```
 
@@ -327,7 +327,11 @@ pixels must be an array of width x height pixels in 32-bits RGBA format.
 
 # sfWindow_setJoystickThreshold()
 
-void sfWindow_setJoystickThreshold( sfWindow \* window, float threshold )
+```c
+
+void sfWindow_setJoystickThreshold( sfWindow* window, float threshold )
+
+```
 
 Change the joystick threshold.
 
@@ -340,7 +344,7 @@ The joystick threshold is the value below which no JoyMoved event will be genera
 
 # sfWindow_setKeyRepeatEnabled()
 
-void sfWindow_setKeyRepeatEnabled( sfWindow \* window, sfBool enabled )
+void sfWindow_setKeyRepeatEnabled( sfWindow* window, sfBool enabled )
 
 Enable or disable automatic key-repeat.
 
@@ -355,7 +359,7 @@ Key repeat is enabled by default.
 
 # sfWindow_setMouseCursorGrabbed()
 
-void sfWindow_setMouseCursorGrabbed( sfWindow \* window, sfBool grabbed )
+void sfWindow_setMouseCursorGrabbed( sfWindow* window, sfBool grabbed )
 
 Grab or release the mouse cursor.
 
@@ -367,7 +371,11 @@ If set, grabs the mouse cursor inside this window's client area so it may no lon
 
 # sfWindow_setMouseCursorVisible()
 
-void sfWindow_setMouseCursorVisible( sfWindow \* window, sfBool visible )
+```c
+
+void sfWindow_setMouseCursorVisible( sfWindow* window, sfBool visible )
+
+```
 
 Show or hide the mouse cursor.
 
@@ -378,7 +386,11 @@ Show or hide the mouse cursor.
 
 # sfWindow_setPosition()
 
-void sfWindow_setPosition( sfWindow \* window, sfVector2i position )
+```c
+
+void sfWindow_setPosition( sfWindow* window, sfVector2i position )
+
+```
 
 Change the position of a window on screen.
 
@@ -393,7 +405,7 @@ This function only works for top-level windows (i.e. it will be ignored for wind
 
 ```c
 
-void sfWindow_setSize( sfWindow * window, sfVector2u size )
+void sfWindow_setSize( sfWindow* window, sfVector2u size )
 
 ```
 
@@ -408,7 +420,7 @@ Change the size of the rendering region of a window.
 
 ```c
 
-void sfWindow_setTitle(	sfWindow * window, const char * title )
+void sfWindow_setTitle(	sfWindow* window, const char* title )
 
 ```
 
@@ -421,7 +433,11 @@ Change the title of a window.
 
 # sfWindow_setUnicodeTitle()
 
+```c
+
 void sfWindow_setUnicodeTitle( sfWindow _ window, const sfUint32 _ title )
+
+```
 
 Change the title of a window (with a UTF-32 string)
 
@@ -434,7 +450,7 @@ Change the title of a window (with a UTF-32 string)
 
 ```c
 
-void sfWindow_setVerticalSyncEnabled( sfWindow * window, sfBool enabled )
+void sfWindow_setVerticalSyncEnabled( sfWindow* window, sfBool enabled )
 
 ```
 
@@ -451,7 +467,7 @@ Activating vertical synchronization will limit the number of frames displayed to
 
 ```c
 
-void sfWindow_setVisible( sfWindow * window, sfBool visible )
+void sfWindow_setVisible( sfWindow* window, sfBool visible )
 
 ```
 
@@ -466,13 +482,13 @@ Show or hide a window.
 
 ```c
 
-sfBool sfWindow_waitEvent(	sfWindow * window, sfEvent * event )
+sfBool sfWindow_waitEvent(	sfWindow* window, sfEvent* event )
 
 ```
 
 Wait for an event and return it.
 
-This function is blocking: if there's no pending event then it will wait until an event is received. After this function **Returns** (and no error occured), the event object is always valid and filled properly. This function is typically used when you have a thread that is dedicated to events handling: you want to make this thread sleep as long as no new event is received.
+This function is blocking: if there's no pending event then it will wait until an event is received. After this function**Returns** (and no error occured), the event object is always valid and filled properly. This function is typically used when you have a thread that is dedicated to events handling: you want to make this thread sleep as long as no new event is received.
 
 **Parameters**
 
