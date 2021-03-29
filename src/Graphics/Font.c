@@ -8,6 +8,59 @@
 
 #include "hbsfml.h"
 
+/* Graphics/sfFont */
+static HB_GARBAGE_FUNC( hb_sfFont_destructor )
+{
+   sfFont ** ppSfFont = ( sfFont ** ) Cargo;
+
+   if( *ppSfFont )
+   {
+      sfFont_destroy( *ppSfFont );
+      *ppSfFont = NULL;
+   }
+}
+
+static const HB_GC_FUNCS s_gcSfFontFuncs =
+{
+   hb_sfFont_destructor,
+   hb_gcDummyMark
+};
+
+sfFont * hb_sfFontItemGet( PHB_ITEM pItem )
+{
+   sfFont ** ppSfFont = ( sfFont ** ) hb_itemGetPtrGC( pItem, &s_gcSfFontFuncs );
+
+   return ppSfFont ? *ppSfFont : NULL;
+}
+
+PHB_ITEM hb_sfFontItemPut( PHB_ITEM pItem, sfFont * pSfFont )
+{
+   sfFont ** ppSfFont = ( sfFont ** ) hb_gcAllocate( sizeof( sfFont * ), &s_gcSfFontFuncs );
+
+   *ppSfFont = pSfFont;
+   return hb_itemPutPtrGC( pItem, ppSfFont );
+}
+
+sfFont * hb_sfFont_param( int iParam )
+{
+   sfFont ** ppSfFont = ( sfFont ** ) hb_parptrGC( &s_gcSfFontFuncs, iParam );
+
+   if( ppSfFont && *ppSfFont )
+   {
+      return *ppSfFont;
+   }
+   else
+   {
+      hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+      return NULL;
+   }
+}
+
+void hb_sfFont_ret( sfFont * pSfFont )
+{
+   hb_sfFontItemPut( hb_stackReturnItem(), pSfFont );
+}
+
 // sfFont* sfFont_createFromFile(const char* filename);
 HB_FUNC( SFFONT_CREATEFROMFILE )
 {
@@ -28,7 +81,20 @@ HB_FUNC( SFFONT_CREATEFROMFILE )
 // sfFont* sfFont_copy(const sfFont* font);
 
 // void sfFont_destroy(sfFont* font);
-/* This function is in the file core.c */
+HB_FUNC( SFFONT_DESTROY )
+{
+   sfFont ** ppSfFont = ( sfFont ** ) hb_parptrGC( &s_gcSfFontFuncs, 1 );
+
+   if( ppSfFont && *ppSfFont )
+   {
+      sfFont_destroy( *ppSfFont );
+      *ppSfFont = NULL;
+   }
+   else
+   {
+      hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+   }
+}
 
 // sfGlyph sfFont_getGlyph(const sfFont* font, sfUint32 codePoint, unsigned int characterSize, sfBool bold, float outlineThickness);
 

@@ -8,6 +8,59 @@
 
 #include "hbsfml.h"
 
+/* Graphics/sfText */
+static HB_GARBAGE_FUNC( hb_sfText_destructor )
+{
+   sfText ** ppSfText = ( sfText ** ) Cargo;
+
+   if( *ppSfText )
+   {
+      sfText_destroy( *ppSfText );
+      *ppSfText = NULL;
+   }
+}
+
+static const HB_GC_FUNCS s_gcSfTextFuncs =
+{
+   hb_sfText_destructor,
+   hb_gcDummyMark
+};
+
+sfText * hb_sfTextItemGet( PHB_ITEM pItem )
+{
+   sfText ** ppSfText = ( sfText ** ) hb_itemGetPtrGC( pItem, &s_gcSfTextFuncs );
+
+   return ppSfText ? *ppSfText : NULL;
+}
+
+PHB_ITEM hb_sfTextItemPut( PHB_ITEM pItem, sfText * pSfText )
+{
+   sfText ** ppSfText = ( sfText ** ) hb_gcAllocate( sizeof( sfText * ), &s_gcSfTextFuncs );
+
+   *ppSfText = pSfText;
+   return hb_itemPutPtrGC( pItem, ppSfText );
+}
+
+sfText * hb_sfText_param( int iParam )
+{
+   sfText ** ppSfText = ( sfText ** ) hb_parptrGC( &s_gcSfTextFuncs, iParam );
+
+   if( ppSfText && *ppSfText )
+   {
+      return *ppSfText;
+   }
+   else
+   {
+      hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+      return NULL;
+   }
+}
+
+void hb_sfText_ret( sfText * pSfText )
+{
+   hb_sfTextItemPut( hb_stackReturnItem(), pSfText );
+}
+
 // sfText* sfText_create(void);
 HB_FUNC( SFTEXT_CREATE )
 {
@@ -17,6 +70,20 @@ HB_FUNC( SFTEXT_CREATE )
 // sfText* sfText_copy(const sfText* text);
 
 // void sfText_destroy(sfText* text);
+HB_FUNC( SFTEXT_DESTROY )
+{
+   sfText ** ppSfText = ( sfText ** ) hb_parptrGC( &s_gcSfTextFuncs, 1 );
+
+   if( ppSfText && *ppSfText )
+   {
+      sfText_destroy( *ppSfText );
+      *ppSfText = NULL;
+   }
+   else
+   {
+      hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+   }
+}
 
 // void sfText_setPosition(sfText* text, sfVector2f position);
 

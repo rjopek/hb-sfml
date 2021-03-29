@@ -8,6 +8,59 @@
 
 #include "hbsfml.h"
 
+/* Window/sfWindow */
+static HB_GARBAGE_FUNC( hb_sfWindow_destructor )
+{
+   sfWindow ** ppSfWindow = ( sfWindow ** ) Cargo;
+
+   if( *ppSfWindow )
+   {
+      sfWindow_destroy( *ppSfWindow );
+      *ppSfWindow = NULL;
+   }
+}
+
+static const HB_GC_FUNCS s_gcSfWindowFuncs =
+{
+   hb_sfWindow_destructor,
+   hb_gcDummyMark
+};
+
+sfWindow * hb_sfWindowItemGet( PHB_ITEM pItem )
+{
+   sfWindow ** ppSfWindow = ( sfWindow ** ) hb_itemGetPtrGC( pItem, &s_gcSfWindowFuncs );
+
+   return ppSfWindow ? *ppSfWindow : NULL;
+}
+
+PHB_ITEM hb_sfWindowItemPut( PHB_ITEM pItem, sfWindow * pSfWindow )
+{
+   sfWindow ** ppSfWindow = ( sfWindow ** ) hb_gcAllocate( sizeof( sfWindow * ), &s_gcSfWindowFuncs );
+
+   *ppSfWindow = pSfWindow;
+   return hb_itemPutPtrGC( pItem, ppSfWindow );
+}
+
+sfWindow * hb_sfWindow_param( int iParam )
+{
+   sfWindow ** ppSfWindow = ( sfWindow ** ) hb_parptrGC( &s_gcSfWindowFuncs, iParam );
+
+   if( ppSfWindow && *ppSfWindow )
+   {
+      return *ppSfWindow;
+   }
+   else
+   {
+      hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+      return NULL;
+   }
+}
+
+void hb_sfWindow_ret( sfWindow * pSfWindow )
+{
+   hb_sfWindowItemPut( hb_stackReturnItem(), pSfWindow );
+}
+
 // sfWindow* sfWindow_create(sfVideoMode mode, const char* title, sfUint32 style, const sfContextSettings* settings);
 HB_FUNC( SFWINDOW_CREATE )
 {
@@ -81,7 +134,20 @@ HB_FUNC( SFWINDOW_CREATEUNICODE )
 // sfWindow* sfWindow_createFromHandle(sfWindowHandle handle, const sfContextSettings* settings);
 
 // void sfWindow_destroy(sfWindow* window);
-/* This function is in the file core.c */
+HB_FUNC( SFWINDOW_DESTROY )
+{
+   sfWindow ** ppSfWindow = ( sfWindow ** ) hb_parptrGC( &s_gcSfWindowFuncs, 1 );
+
+   if( ppSfWindow && *ppSfWindow )
+   {
+      sfWindow_destroy( *ppSfWindow );
+      *ppSfWindow = NULL;
+   }
+   else
+   {
+      hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+   }
+}
 
 // void sfWindow_close(sfWindow* window);
 HB_FUNC( SFWINDOW_CLOSE )

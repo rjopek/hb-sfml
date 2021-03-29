@@ -8,6 +8,59 @@
 
 #include "hbsfml.h"
 
+/* Audio/sfMusic */
+static HB_GARBAGE_FUNC( hb_sfMusic_destructor )
+{
+   sfMusic ** ppSfMusic = ( sfMusic ** ) Cargo;
+
+   if( *ppSfMusic )
+   {
+      sfMusic_destroy( *ppSfMusic );
+      *ppSfMusic = NULL;
+   }
+}
+
+static const HB_GC_FUNCS s_gcSfMusicFuncs =
+{
+   hb_sfMusic_destructor,
+   hb_gcDummyMark
+};
+
+sfMusic * hb_sfMusicItemGet( PHB_ITEM pItem )
+{
+   sfMusic ** ppSfMusic = ( sfMusic ** ) hb_itemGetPtrGC( pItem, &s_gcSfMusicFuncs );
+
+   return ppSfMusic ? *ppSfMusic : NULL;
+}
+
+PHB_ITEM hb_sfMusicItemPut( PHB_ITEM pItem, sfMusic * pSfMusic )
+{
+   sfMusic ** ppSfMusic = ( sfMusic ** ) hb_gcAllocate( sizeof( sfMusic * ), &s_gcSfMusicFuncs );
+
+   *ppSfMusic = pSfMusic;
+   return hb_itemPutPtrGC( pItem, ppSfMusic );
+}
+
+sfMusic * hb_sfMusic_param( int iParam )
+{
+   sfMusic ** ppSfMusic = ( sfMusic ** ) hb_parptrGC( &s_gcSfMusicFuncs, iParam );
+
+   if( ppSfMusic && *ppSfMusic )
+   {
+      return *ppSfMusic;
+   }
+   else
+   {
+      hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+      return NULL;
+   }
+}
+
+void hb_sfMusic_ret( sfMusic * pSfMusic )
+{
+   hb_sfMusicItemPut( hb_stackReturnItem(), pSfMusic );
+}
+
 // sfMusic* sfMusic_createFromFile(const char* filename);
 HB_FUNC( SFMUSIC_CREATEFROMFILE )
 {
@@ -26,7 +79,20 @@ HB_FUNC( SFMUSIC_CREATEFROMFILE )
 // sfMusic* sfMusic_createFromStream(sfInputStream* stream);
 
 // void sfMusic_destroy(sfMusic* music);
-/* This function is in the file core.c */
+HB_FUNC( SFMUSIC_DESTROY )
+{
+   sfMusic ** ppSfMusic = ( sfMusic ** ) hb_parptrGC( &s_gcSfMusicFuncs, 1 );
+
+   if( ppSfMusic && *ppSfMusic )
+   {
+      sfMusic_destroy( *ppSfMusic );
+      *ppSfMusic = NULL;
+   }
+   else
+   {
+      hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+   }
+}
 
 // void sfMusic_setLoop(sfMusic* music, sfBool loop);
 

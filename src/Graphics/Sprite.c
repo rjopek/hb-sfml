@@ -8,6 +8,59 @@
 
 #include "hbsfml.h"
 
+/* Graphics/sfSprite */
+static HB_GARBAGE_FUNC( hb_sfSprite_destructor )
+{
+   sfSprite ** ppSfSprite = ( sfSprite ** ) Cargo;
+
+   if( *ppSfSprite )
+   {
+      sfSprite_destroy( *ppSfSprite );
+      *ppSfSprite = NULL;
+   }
+}
+
+static const HB_GC_FUNCS s_gcSfSpriteFuncs =
+{
+   hb_sfSprite_destructor,
+   hb_gcDummyMark
+};
+
+sfSprite * hb_sfSpriteItemGet( PHB_ITEM pItem )
+{
+   sfSprite ** ppSfSprite = ( sfSprite ** ) hb_itemGetPtrGC( pItem, &s_gcSfSpriteFuncs );
+
+   return ppSfSprite ? *ppSfSprite : NULL;
+}
+
+PHB_ITEM hb_sfSpriteItemPut( PHB_ITEM pItem, sfSprite * pSfSprite )
+{
+   sfSprite ** ppSfSprite = ( sfSprite ** ) hb_gcAllocate( sizeof( sfSprite * ), &s_gcSfSpriteFuncs );
+
+   *ppSfSprite = pSfSprite;
+   return hb_itemPutPtrGC( pItem, ppSfSprite );
+}
+
+sfSprite * hb_sfSprite_param( int iParam )
+{
+   sfSprite ** ppSfSprite = ( sfSprite ** ) hb_parptrGC( &s_gcSfSpriteFuncs, iParam );
+
+   if( ppSfSprite && *ppSfSprite )
+   {
+      return *ppSfSprite;
+   }
+   else
+   {
+      hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+      return NULL;
+   }
+}
+
+void hb_sfSprite_ret( sfSprite * pSfSprite )
+{
+   hb_sfSpriteItemPut( hb_stackReturnItem(), pSfSprite );
+}
+
 // sfSprite* sfSprite_create(void);
 HB_FUNC( SFSPRITE_CREATE )
 {
@@ -30,7 +83,20 @@ HB_FUNC( SFSPRITE_COPY )
 }
 
 // void sfSprite_destroy(sfSprite* sprite);
-/* This function is in the file core.c */
+HB_FUNC( SFSPRITE_DESTROY )
+{
+   sfSprite ** ppSfSprite = ( sfSprite ** ) hb_parptrGC( &s_gcSfSpriteFuncs, 1 );
+
+   if( ppSfSprite && *ppSfSprite )
+   {
+      sfSprite_destroy( *ppSfSprite );
+      *ppSfSprite = NULL;
+   }
+   else
+   {
+      hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+   }
+}
 
 // void sfSprite_setPosition(sfSprite* sprite, sfVector2f position);
 
