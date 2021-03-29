@@ -13,6 +13,10 @@ View the project on [GitHub](https://github.com/rjopek/hb-sfml)
 
 ### Function reference 2.5.1
 
+> - [Audio](audio "Audio")
+> - [Graphics](graphics "Graphics")
+> - [Network](network "Network")
+> - [System](system "System")
 > - [Window](window "Window")
 
 [![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](LICENSE)
