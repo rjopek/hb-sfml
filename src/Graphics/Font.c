@@ -79,6 +79,19 @@ HB_FUNC( SFFONT_CREATEFROMFILE )
 // sfFont* sfFont_createFromStream(sfInputStream* stream);
 
 // sfFont* sfFont_copy(const sfFont* font);
+HB_FUNC( SFFONT_COPY )
+{
+   const sfFont* font = hb_sfFont_param( 1 );
+
+   if( font )
+   {
+      hb_sfFont_ret( sfFont_copy( font ) );
+   }
+   else
+   {
+      hb_errRT_BASE_SubstR( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+   }
+}
 
 // void sfFont_destroy(sfFont* font);
 HB_FUNC( SFFONT_DESTROY )
@@ -109,3 +122,22 @@ HB_FUNC( SFFONT_DESTROY )
 // const sfTexture* sfFont_getTexture(sfFont* font, unsigned int characterSize);
 
 // sfFontInfo sfFont_getInfo(const sfFont* font);
+HB_FUNC( SFFONT_GETINFO )
+{
+   const sfFont* font = hb_sfFont_param( 1 );
+
+   if( font )
+   {
+      sfFontInfo sffontinfo = sfFont_getInfo( font );
+
+      PHB_ITEM info = hb_itemArrayNew( 1 );
+
+      hb_arraySetC( info, 1, sffontinfo.family );
+
+      hb_itemReturnRelease( info );
+   }
+   else
+   {
+      hb_errRT_BASE_SubstR( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+   }
+}

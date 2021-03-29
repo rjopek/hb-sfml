@@ -87,7 +87,7 @@ HB_FUNC( SFWINDOW_CREATE )
       settings.attributeFlags    = ( unsigned int ) hb_arrayGetNI( pItem2, 6 );
       settings.sRgbCapable       =                  hb_arrayGetL(  pItem2, 7 );
 
-      hb_sfWindow_ret( sfWindow_create( mode, hb_parc( 2 ), ( unsigned int ) hb_parni( 3 ), &settings  ) );
+      hb_sfWindow_ret( sfWindow_create( mode, hb_parc( 2 ), ( unsigned int ) hb_parni( 3 ), &settings ) );
    }
    else
    {
@@ -122,7 +122,7 @@ HB_FUNC( SFWINDOW_CREATEUNICODE )
       settings.sRgbCapable       =                  hb_arrayGetL( pItem2, 7 );
 
       const sfUint32 title;
-      hb_sfWindow_ret( sfWindow_createUnicode( mode, &title, ( unsigned int ) hb_parni( 3 ), &settings  ) );
+      hb_sfWindow_ret( sfWindow_createUnicode( mode, &title, ( unsigned int ) hb_parni( 3 ), &settings ) );
       hb_storni( title, 2 );
    }
    else
