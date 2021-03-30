@@ -3,6 +3,22 @@
 #define HBSFML_CH_
 
 /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
+/* Graphics/BlendMode */
+#define sfBlendFactorZero                0   ///< (0, 0, 0, 0)
+#define sfBlendFactorOne                 1   ///< (1, 1, 1, 1)
+#define sfBlendFactorSrcColor            2   ///< (src.r, src.g, src.b, src.a)
+#define sfBlendFactorOneMinusSrcColor    3   ///< (1, 1, 1, 1) - (src.r, src.g, src.b, src.a)
+#define sfBlendFactorDstColor            4   ///< (dst.r, dst.g, dst.b, dst.a)
+#define sfBlendFactorOneMinusDstColor    5   ///< (1, 1, 1, 1) - (dst.r, dst.g, dst.b, dst.a)
+#define sfBlendFactorSrcAlpha            6   ///< (src.a, src.a, src.a, src.a)
+#define sfBlendFactorOneMinusSrcAlpha    7   ///< (1, 1, 1, 1) - (src.a, src.a, src.a, src.a)
+#define sfBlendFactorDstAlpha            8   ///< (dst.a, dst.a, dst.a, dst.a)
+#define sfBlendFactorOneMinusDstAlpha    9   ///< (1, 1, 1, 1) - (dst.a, dst.a, dst.a, dst.a)
+
+#define sfBlendEquationAdd               0   ///< Pixel = Src * SrcFactor + Dst * DstFactor
+#define sfBlendEquationSubtract          1   ///< Pixel = Src * SrcFactor - Dst * DstFactor
+#define sfBlendEquationReverseSubtract   2   ///< Pixel = Dst * DstFactor - Src * SrcFactor
+
 /* Graphics/Text */
 #define sfTextRegular                    0   ///< Regular characters no style
 #define sfTextBold                       1   ///< Bold characters

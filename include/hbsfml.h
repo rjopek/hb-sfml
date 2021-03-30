@@ -15,12 +15,18 @@ HB_EXTERN_BEGIN
 
 /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 /* Audio/sfMusic */
-extern HB_EXPORT sfMusic * hb_sfMusicItemGet( PHB_ITEM pItem );
-extern HB_EXPORT PHB_ITEM  hb_sfMusicItemPut( PHB_ITEM pItem, sfMusic * pSfMusic );
-extern HB_EXPORT sfMusic * hb_sfMusic_param( int iParam );
-extern HB_EXPORT void      hb_sfMusic_ret( sfMusic * );
+extern HB_EXPORT sfMusic *  hb_sfMusicItemGet( PHB_ITEM pItem );
+extern HB_EXPORT PHB_ITEM   hb_sfMusicItemPut( PHB_ITEM pItem, sfMusic * pSfMusic );
+extern HB_EXPORT sfMusic *  hb_sfMusic_param( int iParam );
+extern HB_EXPORT void       hb_sfMusic_ret( sfMusic * );
 
 /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
+/* Graphics/sfCircleShape */
+extern HB_EXPORT sfCircleShape *  hb_sfCircleShapeItemGet( PHB_ITEM pItem );
+extern HB_EXPORT PHB_ITEM         hb_sfCircleShapeItemPut( PHB_ITEM pItem, sfCircleShape * pSfCircleShape );
+extern HB_EXPORT sfCircleShape *  hb_sfCircleShape_param( int iParam );
+extern HB_EXPORT void             hb_sfCircleShape_ret( sfCircleShape * );
+
 /* Graphics/sfFont */
 extern HB_EXPORT sfFont *  hb_sfFontItemGet( PHB_ITEM pItem );
 extern HB_EXPORT PHB_ITEM  hb_sfFontItemPut( PHB_ITEM pItem, sfFont * pSfFont );
