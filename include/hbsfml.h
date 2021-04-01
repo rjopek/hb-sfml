@@ -9,6 +9,8 @@
 
 #include <SFML/Audio.h>
 #include <SFML/Graphics.h>
+#include <SFML/Network.h>
+#include <SFML/System.h>
 #include <SFML/Window.h>
 
 HB_EXTERN_BEGIN
@@ -56,6 +58,20 @@ extern HB_EXPORT sfTexture *  hb_sfTextureItemGet( PHB_ITEM pItem );
 extern HB_EXPORT PHB_ITEM     hb_sfTextureItemPut( PHB_ITEM pItem, sfTexture * pSfTexture );
 extern HB_EXPORT sfTexture *  hb_sfTexture_param( int iParam );
 extern HB_EXPORT void         hb_sfTexture_ret( sfTexture * );
+
+/* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
+/* Network/sfFtpDirectoryResponse */
+extern HB_EXPORT sfFtpDirectoryResponse *  hb_sfFtpDirectoryResponseItemGet( PHB_ITEM pItem );
+extern HB_EXPORT PHB_ITEM                  hb_sfFtpDirectoryResponseItemPut( PHB_ITEM pItem, sfFtpDirectoryResponse * pSfFtpDirectoryResponse );
+extern HB_EXPORT sfFtpDirectoryResponse *  hb_sfFtpDirectoryResponse_param( int iParam );
+extern HB_EXPORT void                      hb_sfFtpDirectoryResponse_ret( sfFtpDirectoryResponse * );
+
+/* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
+/* System/sfClock */
+extern HB_EXPORT sfClock *  hb_sfClockItemGet( PHB_ITEM pItem );
+extern HB_EXPORT PHB_ITEM   hb_sfClockItemPut( PHB_ITEM pItem, sfClock * pSfClock );
+extern HB_EXPORT sfClock *  hb_sfClock_param( int iParam );
+extern HB_EXPORT void       hb_sfClock_ret( sfClock * );
 
 /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 /* Window/sfWindow */

@@ -44,6 +44,8 @@
 src/*.c
 src/Audio/*.c
 src/Graphics/*.c
+src/Network/*.c
+src/System/*.c
 src/Window/*.c
 src/*.prg
 

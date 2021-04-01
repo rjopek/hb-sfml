@@ -27,6 +27,71 @@
 #define sfTextStrikeThrough              8   ///< Strike through characters
 
 /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
+/* Network/sfFtpListingResponse */
+#define sfFtpBinary                      0   ///< Binary mode (file is transfered as a sequence of bytes)
+#define sfFtpAscii                       1   ///< Text mode using ASCII encoding
+#define sfFtpEbcdic                      2   ///< Text mode using EBCDIC encoding
+
+   // 1xx: the requested action is being initiated,
+   // expect another reply before proceeding with a new command
+#define sfFtpRestartMarkerReply          110   ///< Restart marker reply
+#define sfFtpServiceReadySoon            120   ///< Service ready in N minutes
+#define sfFtpDataConnectionAlreadyOpened 125   ///< Data connection already opened, transfer starting
+#define sfFtpOpeningDataConnection       150   ///< File status ok, about to open data connection
+
+   // 2xx: the requested action has been successfully completed
+#define sfFtpOk                          200   ///< Command ok
+#define sfFtpPointlessCommand            202   ///< Command not implemented
+#define sfFtpSystemStatus                211   ///< System status, or system help reply
+#define sfFtpDirectoryStatus             212   ///< Directory status
+#define sfFtpFileStatus                  213   ///< File status
+#define sfFtpHelpMessage                 214   ///< Help message
+#define sfFtpSystemType                  215   ///< NAME system type, where NAME is an official system name from the list in the Assigned Numbers document
+#define sfFtpServiceReady                220   ///< Service ready for new user
+#define sfFtpClosingConnection           221   ///< Service closing control connection
+#define sfFtpDataConnectionOpened        225   ///< Data connection open, no transfer in progress
+#define sfFtpClosingDataConnection       226   ///< Closing data connection, requested file action successful
+#define sfFtpEnteringPassiveMode         227   ///< Entering passive mode
+#define sfFtpLoggedIn                    230   ///< User logged in, proceed. Logged out if appropriate
+#define sfFtpFileActionOk                250   ///< Requested file action ok
+#define sfFtpDirectoryOk                 257   ///< PATHNAME created
+
+   // 3xx: the command has been accepted, but the requested action
+   // is dormant, pending receipt of further information
+#define sfFtpNeedPassword                331   ///< User name ok, need password
+#define sfFtpNeedAccountToLogIn          332   ///< Need account for login
+#define sfFtpNeedInformation             350   ///< Requested file action pending further information
+
+   // 4xx: the command was not accepted and the requested action did not take place,
+   // but the error condition is temporary and the action may be requested again
+#define sfFtpServiceUnavailable          421   ///< Service not available, closing control connection
+#define sfFtpDataConnectionUnavailable   425   ///< Can't open data connection
+#define sfFtpTransferAborted             426   ///< Connection closed, transfer aborted
+#define sfFtpFileActionAborted           450   ///< Requested file action not taken
+#define sfFtpLocalError                  451   ///< Requested action aborted, local error in processing
+#define sfFtpInsufficientStorageSpace    452   ///< Requested action not taken; insufficient storage space in system, file unavailable
+
+   // 5xx: the command was not accepted and
+   // the requested action did not take place
+#define sfFtpCommandUnknown              500   ///< Syntax error, command unrecognized
+#define sfFtpParametersUnknown           501   ///< Syntax error in parameters or arguments
+#define sfFtpCommandNotImplemented       502   ///< Command not implemented
+#define sfFtpBadCommandSequence          503   ///< Bad sequence of commands
+#define sfFtpParameterNotImplemented     504   ///< Command not implemented for that parameter
+#define sfFtpNotLoggedIn                 530   ///< Not logged in
+#define sfFtpNeedAccountToStore          532   ///< Need account for storing files
+#define sfFtpFileUnavailable             550   ///< Requested action not taken, file unavailable
+#define sfFtpPageTypeUnknown             551   ///< Requested action aborted, page type unknown
+#define sfFtpNotEnoughMemory             552   ///< Requested file action aborted, exceeded storage allocation
+#define sfFtpFilenameNotAllowed          553   ///< Requested action not taken, file name not allowed
+
+   // 10xx: SFML custom codes
+#define sfFtpInvalidResponse             1000  ///< Response is not a valid FTP one
+#define sfFtpConnectionFailed            1001  ///< Connection with server failed
+#define sfFtpConnectionClosed            1002  ///< Connection with server closed
+#define sfFtpInvalidFile                 1003  ///< Invalid file to upload / download
+
+/* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 /* Window/Cursor */
 #define sfCursorArrow                    0    ///< Arrow cursor (default)
 #define sfCursorArrowWait                1    ///< Busy arrow cursor
