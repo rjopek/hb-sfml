@@ -73,6 +73,18 @@ extern HB_EXPORT PHB_ITEM   hb_sfClockItemPut( PHB_ITEM pItem, sfClock * pSfCloc
 extern HB_EXPORT sfClock *  hb_sfClock_param( int iParam );
 extern HB_EXPORT void       hb_sfClock_ret( sfClock * );
 
+/* System/sfMutex */
+extern HB_EXPORT sfMutex *  hb_sfMutexItemGet( PHB_ITEM pItem );
+extern HB_EXPORT PHB_ITEM   hb_sfMutexItemPut( PHB_ITEM pItem, sfMutex * pSfMutex );
+extern HB_EXPORT sfMutex *  hb_sfMutex_param( int iParam );
+extern HB_EXPORT void       hb_sfMutex_ret( sfMutex * );
+
+/* System/sfThread */
+extern HB_EXPORT sfThread *  hb_sfThreadItemGet( PHB_ITEM pItem );
+extern HB_EXPORT PHB_ITEM    hb_sfThreadItemPut( PHB_ITEM pItem, sfThread * pSfThread );
+extern HB_EXPORT sfThread *  hb_sfThread_param( int iParam );
+extern HB_EXPORT void        hb_sfThread_ret( sfThread * );
+
 /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 /* Window/sfWindow */
 extern HB_EXPORT sfWindow *  hb_sfWindowItemGet( PHB_ITEM pItem );
