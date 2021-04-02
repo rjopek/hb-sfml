@@ -22,6 +22,30 @@ extern HB_EXPORT PHB_ITEM   hb_sfMusicItemPut( PHB_ITEM pItem, sfMusic * pSfMusi
 extern HB_EXPORT sfMusic *  hb_sfMusic_param( int iParam );
 extern HB_EXPORT void       hb_sfMusic_ret( sfMusic * );
 
+/* Audio/sfSound */
+extern HB_EXPORT sfSound *  hb_sfSoundItemGet( PHB_ITEM pItem );
+extern HB_EXPORT PHB_ITEM   hb_sfSoundItemPut( PHB_ITEM pItem, sfSound * pSfSound );
+extern HB_EXPORT sfSound *  hb_sfSound_param( int iParam );
+extern HB_EXPORT void       hb_sfSound_ret( sfSound * );
+
+/* Audio/sfSoundBuffer */
+extern HB_EXPORT sfSoundBuffer *  hb_sfSoundBufferItemGet( PHB_ITEM pItem );
+extern HB_EXPORT PHB_ITEM         hb_sfSoundBufferItemPut( PHB_ITEM pItem, sfSoundBuffer * pSfSoundBuffer );
+extern HB_EXPORT sfSoundBuffer *  hb_sfSoundBuffer_param( int iParam );
+extern HB_EXPORT void             hb_sfSoundBuffer_ret( sfSoundBuffer * );
+
+/* Audio/sfSoundBufferRecorder */
+extern HB_EXPORT sfSoundBufferRecorder *  hb_sfSoundBufferRecorderItemGet( PHB_ITEM pItem );
+extern HB_EXPORT PHB_ITEM                 hb_sfSoundBufferRecorderItemPut( PHB_ITEM pItem, sfSoundBufferRecorder * pSfSoundBufferRecorder );
+extern HB_EXPORT sfSoundBufferRecorder *  hb_sfSoundBufferRecorder_param( int iParam );
+extern HB_EXPORT void                     hb_sfSoundBufferRecorder_ret( sfSoundBufferRecorder * );
+
+/* Audio/sfSoundStream */
+extern HB_EXPORT sfSoundStream *  hb_sfSoundStreamItemGet( PHB_ITEM pItem );
+extern HB_EXPORT PHB_ITEM         hb_sfSoundStreamItemPut( PHB_ITEM pItem, sfSoundStream * pSfSoundStream );
+extern HB_EXPORT sfSoundStream *  hb_sfSoundStream_param( int iParam );
+extern HB_EXPORT void             hb_sfSoundStream_ret( sfSoundStream * );
+
 /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 /* Graphics/sfCircleShape */
 extern HB_EXPORT sfCircleShape *  hb_sfCircleShapeItemGet( PHB_ITEM pItem );

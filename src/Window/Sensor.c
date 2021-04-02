@@ -43,9 +43,9 @@ HB_FUNC( sfSensor_getValue )
 
       PHB_ITEM info = hb_itemArrayNew( 3 );
 
-      hb_arraySetNL( info, 1, ( float ) sfvector3f.x );
-      hb_arraySetNL( info, 2, ( float ) sfvector3f.y );
-      hb_arraySetNL( info, 3, ( float ) sfvector3f.z );
+      hb_arraySetND( info, 1, ( float ) sfvector3f.x );
+      hb_arraySetND( info, 2, ( float ) sfvector3f.y );
+      hb_arraySetND( info, 3, ( float ) sfvector3f.z );
 
       hb_itemReturnRelease( info );
    }
