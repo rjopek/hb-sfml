@@ -53,11 +53,23 @@ extern HB_EXPORT PHB_ITEM         hb_sfCircleShapeItemPut( PHB_ITEM pItem, sfCir
 extern HB_EXPORT sfCircleShape *  hb_sfCircleShape_param( int iParam );
 extern HB_EXPORT void             hb_sfCircleShape_ret( sfCircleShape * );
 
+/* Graphics/sfConvexShape */
+extern HB_EXPORT sfConvexShape *  hb_sfConvexShapeItemGet( PHB_ITEM pItem );
+extern HB_EXPORT PHB_ITEM         hb_sfConvexShapeItemPut( PHB_ITEM pItem, sfConvexShape * pSfConvexShape );
+extern HB_EXPORT sfConvexShape *  hb_sfConvexShape_param( int iParam );
+extern HB_EXPORT void             hb_sfConvexShape_ret( sfConvexShape * );
+
 /* Graphics/sfFont */
 extern HB_EXPORT sfFont *  hb_sfFontItemGet( PHB_ITEM pItem );
 extern HB_EXPORT PHB_ITEM  hb_sfFontItemPut( PHB_ITEM pItem, sfFont * pSfFont );
 extern HB_EXPORT sfFont *  hb_sfFont_param( int iParam );
 extern HB_EXPORT void      hb_sfFont_ret( sfFont * );
+
+/* Graphics/sfImage */
+extern HB_EXPORT sfImage *  hb_sfImageItemGet( PHB_ITEM pItem );
+extern HB_EXPORT PHB_ITEM   hb_sfImageItemPut( PHB_ITEM pItem, sfImage * pSfImage );
+extern HB_EXPORT sfImage *  hb_sfImage_param( int iParam );
+extern HB_EXPORT void       hb_sfImage_ret( sfImage * );
 
 /* Graphics/sfRenderWindow */
 extern HB_EXPORT sfRenderWindow *  hb_sfRenderWindowItemGet( PHB_ITEM pItem );

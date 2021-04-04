@@ -25,12 +25,30 @@
 #define sfBlendEquationSubtract          1   ///< Pixel = Src * SrcFactor - Dst * DstFactor
 #define sfBlendEquationReverseSubtract   2   ///< Pixel = Dst * DstFactor - Src * SrcFactor
 
+/* Graphics/PrimitiveType */
+#define sfPoints                         0   ///< List of individual points
+#define sfLines                          1   ///< List of individual lines
+#define sfLineStrip                      2   ///< List of connected lines, a point uses the previous point to form a line
+#define sfTriangles                      3   ///< List of individual triangles
+#define sfTriangleStrip                  4   ///< List of connected triangles, a point uses the two previous points to form a triangle
+#define sfTriangleFan                    5   ///< List of connected triangles, a point uses the common center and the previous point to form a triangle
+#define sfQuads                          6   ///< List of individual quads
+
+#define sfLinesStrip      sfLineStrip        ///< \deprecated Use sfLineStrip instead
+#define sfTrianglesStrip  sfTriangleStrip    ///< \deprecated Use sfTriangleStrip instead
+#define sfTrianglesFan    sfTriangleFan      ///< \deprecated Use sfTriangleFan instead
+
 /* Graphics/Text */
 #define sfTextRegular                    0   ///< Regular characters no style
 #define sfTextBold                       1   ///< Bold characters
 #define sfTextItalic                     2   ///< Italic characters
 #define sfTextUnderlined                 4   ///< Underlined characters
 #define sfTextStrikeThrough              8   ///< Strike through characters
+
+/* Graphics/VertexBuffer */
+#define sfVertexBufferStream             0   ///< Constantly changing data
+#define sfVertexBufferDynamic            1   ///< Occasionally changing data
+#define sfVertexBufferStatic             2   ///< Rarely changing data
 
 /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 /* Network/sfFtpListingResponse */
