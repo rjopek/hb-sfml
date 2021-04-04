@@ -71,11 +71,35 @@ extern HB_EXPORT PHB_ITEM   hb_sfImageItemPut( PHB_ITEM pItem, sfImage * pSfImag
 extern HB_EXPORT sfImage *  hb_sfImage_param( int iParam );
 extern HB_EXPORT void       hb_sfImage_ret( sfImage * );
 
+/* Graphics/sfRectangleShape */
+extern HB_EXPORT sfRectangleShape *  hb_sfRectangleShapeItemGet( PHB_ITEM pItem );
+extern HB_EXPORT PHB_ITEM            hb_sfRectangleShapeItemPut( PHB_ITEM pItem, sfRectangleShape * pSfRectangleShape );
+extern HB_EXPORT sfRectangleShape *  hb_sfRectangleShape_param( int iParam );
+extern HB_EXPORT void                hb_sfRectangleShape_ret( sfRectangleShape * );
+
+/* Graphics/sfRenderTexture */
+extern HB_EXPORT sfRenderTexture *  hb_sfRenderTextureItemGet( PHB_ITEM pItem );
+extern HB_EXPORT PHB_ITEM           hb_sfRenderTextureItemPut( PHB_ITEM pItem, sfRenderTexture * pSfRenderTexture );
+extern HB_EXPORT sfRenderTexture *  hb_sfRenderTexture_param( int iParam );
+extern HB_EXPORT void               hb_sfRenderTexture_ret( sfRenderTexture * );
+
 /* Graphics/sfRenderWindow */
 extern HB_EXPORT sfRenderWindow *  hb_sfRenderWindowItemGet( PHB_ITEM pItem );
 extern HB_EXPORT PHB_ITEM          hb_sfRenderWindowItemPut( PHB_ITEM pItem, sfRenderWindow * pSfRenderWindow );
 extern HB_EXPORT sfRenderWindow *  hb_sfRenderWindow_param( int iParam );
 extern HB_EXPORT void              hb_sfRenderWindow_ret( sfRenderWindow * );
+
+/* Graphics/sfShader */
+extern HB_EXPORT sfShader *  hb_sfShaderItemGet( PHB_ITEM pItem );
+extern HB_EXPORT PHB_ITEM    hb_sfShaderItemPut( PHB_ITEM pItem, sfShader * pSfShader );
+extern HB_EXPORT sfShader *  hb_sfShader_param( int iParam );
+extern HB_EXPORT void        hb_sfShader_ret( sfShader * );
+
+/* Graphics/sfShape */
+extern HB_EXPORT sfShape *  hb_sfShapeItemGet( PHB_ITEM pItem );
+extern HB_EXPORT PHB_ITEM   hb_sfShapeItemPut( PHB_ITEM pItem, sfShape * pSfShape );
+extern HB_EXPORT sfShape *  hb_sfShape_param( int iParam );
+extern HB_EXPORT void       hb_sfShape_ret( sfShape * );
 
 /* Graphics/sfSprite */
 extern HB_EXPORT sfSprite *  hb_sfSpriteItemGet( PHB_ITEM pItem );
@@ -94,6 +118,30 @@ extern HB_EXPORT sfTexture *  hb_sfTextureItemGet( PHB_ITEM pItem );
 extern HB_EXPORT PHB_ITEM     hb_sfTextureItemPut( PHB_ITEM pItem, sfTexture * pSfTexture );
 extern HB_EXPORT sfTexture *  hb_sfTexture_param( int iParam );
 extern HB_EXPORT void         hb_sfTexture_ret( sfTexture * );
+
+/* Graphics/sfTransformable */
+extern HB_EXPORT sfTransformable *  hb_sfTransformableItemGet( PHB_ITEM pItem );
+extern HB_EXPORT PHB_ITEM           hb_sfTransformableItemPut( PHB_ITEM pItem, sfTransformable * pSfTransformable );
+extern HB_EXPORT sfTransformable *  hb_sfTransformable_param( int iParam );
+extern HB_EXPORT void               hb_sfTransformable_ret( sfTransformable * );
+
+/* Graphics/sfVertexArray */
+extern HB_EXPORT sfVertexArray *  hb_sfVertexArrayItemGet( PHB_ITEM pItem );
+extern HB_EXPORT PHB_ITEM         hb_sfVertexArrayItemPut( PHB_ITEM pItem, sfVertexArray * pSfVertexArray );
+extern HB_EXPORT sfVertexArray *  hb_sfVertexArray_param( int iParam );
+extern HB_EXPORT void             hb_sfVertexArray_ret( sfVertexArray * );
+
+/* Graphics/sfVertexBuffer */
+extern HB_EXPORT sfVertexBuffer *  hb_sfVertexBufferItemGet( PHB_ITEM pItem );
+extern HB_EXPORT PHB_ITEM          hb_sfVertexBufferItemPut( PHB_ITEM pItem, sfVertexBuffer * pSfVertexBuffer );
+extern HB_EXPORT sfVertexBuffer *  hb_sfVertexBuffer_param( int iParam );
+extern HB_EXPORT void              hb_sfVertexBuffer_ret( sfVertexBuffer * );
+
+/* Graphics/sfView */
+extern HB_EXPORT sfView *  hb_sfViewItemGet( PHB_ITEM pItem );
+extern HB_EXPORT PHB_ITEM  hb_sfViewItemPut( PHB_ITEM pItem, sfView * pSfView );
+extern HB_EXPORT sfView *  hb_sfView_param( int iParam );
+extern HB_EXPORT void      hb_sfView_ret( sfView * );
 
 /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 /* Network/sfFtpDirectoryResponse */
