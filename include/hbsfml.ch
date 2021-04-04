@@ -3,6 +3,12 @@
 #define HBSFML_CH_
 
 /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
+/* Audio/SoundStatus */
+#define sfStopped                        0   ///< Sound / music is not playing
+#define sfPaused                         1   ///< Sound / music is paused
+#define sfPlaying                        2   ///< Sound / music is playing
+
+/* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 /* Graphics/BlendMode */
 #define sfBlendFactorZero                0   ///< (0, 0, 0, 0)
 #define sfBlendFactorOne                 1   ///< (1, 1, 1, 1)
