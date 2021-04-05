@@ -1,4 +1,3 @@
-
 #ifndef HB_SFML_H_
 #define HB_SFML_H_
 

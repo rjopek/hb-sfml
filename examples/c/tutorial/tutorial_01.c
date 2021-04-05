@@ -3,87 +3,25 @@
 int main()
 {
    sfVideoMode mode = { 800, 600, 32 };
-   sfRenderWindow* window;
-   sfTexture* texture;
-   sfSprite* sprite;
-   sfFont* font;
-   sfText* text;
-   sfMusic* music;
+   sfWindow* window;
    sfEvent event;
 
-   /* Create the main window */
-   window = sfRenderWindow_create( mode, "SFML window", sfResize | sfClose, NULL );
-   if( ! window )
-   {
-      return EXIT_FAILURE;
-   }
+   window = sfWindow_create( mode, "SFML window", sfResize | sfClose, NULL );
 
-   /* Load a sprite to display */
-   texture = sfTexture_createFromFile( "cute_image.jpg", NULL );
-   if( ! texture )
-   {
-      return EXIT_FAILURE;
-   }
-
-   sprite = sfSprite_create();
-   sfSprite_setTexture( sprite, texture, sfTrue );
-
-   /* Create a graphical text to display */
-   font = sfFont_createFromFile( "arial.ttf" );
-   if( ! font )
-   {
-      return EXIT_FAILURE;
-   }
-
-   text = sfText_create();
-   sfText_setString( text, "Hello SFML" );
-   sfText_setFont( text, font );
-   sfText_setCharacterSize( text, 50 );
-
-   /* Load a music to play */
-   music = sfMusic_createFromFile( "nice_music.ogg" );
-   if( ! music )
-   {
-      return EXIT_FAILURE;
-   }
-
-   /* Play the music */
-   sfMusic_play( music );
-
-   /* Start the game loop */
+   // run the program as long as the window is open
    while( sfRenderWindow_isOpen( window ) )
    {
-      /* Process events */
+      // check all the window's events that were triggered since the last iteration of the loop
       while( sfRenderWindow_pollEvent( window, &event ) )
       {
-         /* Close window : exit */
+         // "close requested" event: we close the window
          if( event.type == sfEvtClosed )
          {
-            sfRenderWindow_close(window);
+            sfRenderWindow_close( window );
          }
       }
-
-      /* Clear the screen */
-      sfRenderWindow_clear( window, sfBlack );
-
-      /* Draw the sprite */
-      sfRenderWindow_drawSprite( window, sprite, NULL );
-
-      /* Draw the text */
-      sfRenderWindow_drawText( window, text, NULL );
-
-      /* Update the window */
-      sfRenderWindow_display( window );
-
    }
+   sfWindow_destroy( window );
 
-   /* Cleanup resources */
-   sfMusic_destroy( music );
-   sfText_destroy( text );
-   sfFont_destroy( font );
-   sfSprite_destroy( sprite );
-   sfTexture_destroy( texture );
-   sfRenderWindow_destroy( window );
-
-   return EXIT_SUCCESS;
+   return 0;
 }
