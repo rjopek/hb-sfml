@@ -8,8 +8,9 @@ PROCEDURE Main()
    LOCAL pWindow
    LOCAL aContextSettings := { 0, 0, 0, 4, 5, 0, .F. }
    LOCAL aMode := { 800, 600, 24 }
-   LOCAL aEvent
+   LOCAL aEvent := {}
 
+   Alert( hb_ValToExp( hb_sfEventType() ) )
    pWindow := sfWindow_create( aMode, "My window", sfResize + sfClose, aContextSettings )
 
    // run the program as long as the window is open
@@ -17,7 +18,7 @@ PROCEDURE Main()
 
       // check all the window's events that were triggered since the last iteration of the loop
       DO WHILE sfWindow_pollEvent( pWindow, aEvent )
-alert( hb_ValToExp( aEvent ) )
+
          // "close requested" event: we close the window
          IF aEvent[ EventType ] == sfEvtClosed
             sfWindow_close( pWindow )
