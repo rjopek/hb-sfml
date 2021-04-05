@@ -51,7 +51,7 @@
 #define sfVertexBufferStatic             2   ///< Rarely changing data
 
 /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
-/* Network/sfFtpListingResponse */
+/* Network/Ftp */
 #define sfFtpBinary                      0   ///< Binary mode (file is transfered as a sequence of bytes)
 #define sfFtpAscii                       1   ///< Text mode using ASCII encoding
 #define sfFtpEbcdic                      2   ///< Text mode using EBCDIC encoding
@@ -115,6 +115,53 @@
 #define sfFtpConnectionClosed            1002  ///< Connection with server closed
 #define sfFtpInvalidFile                 1003  ///< Invalid file to upload / download
 
+/* Network/Http */
+#define sfHttpGet                        0   ///< Request in get mode, standard method to retrieve a page
+#define sfHttpPost                       1   ///< Request in post mode, usually to send data to a page
+#define sfHttpHead                       2   ///< Request a page's header only
+#define sfHttpPut                        3   ///< Request in put mode, useful for a REST API
+#define sfHttpDelete                     4   ///< Request in delete mode, useful for a REST API
+
+   // 2xx: success
+#define sfHttpOk                         200   ///< Most common code returned when operation was successful
+#define sfHttpCreated                    201   ///< The resource has successfully been created
+#define sfHttpAccepted                   202   ///< The request has been accepted, but will be processed later by the server
+#define sfHttpNoContent                  204   ///< Sent when the server didn't send any data in return
+#define sfHttpResetContent               205   ///< The server informs the client that it should clear the view (form) that caused the request to be sent
+#define sfHttpPartialContent             206   ///< The server has sent a part of the resource, as a response to a partial GET request
+
+   // 3xx: redirection
+#define sfHttpMultipleChoices            300   ///< The requested page can be accessed from several locations
+#define sfHttpMovedPermanently           301   ///< The requested page has permanently moved to a new location
+#define sfHttpMovedTemporarily           302   ///< The requested page has temporarily moved to a new location
+#define sfHttpNotModified                304   ///< For conditional requests, means the requested page hasn't changed and doesn't need to be refreshed
+
+   // 4xx: client error
+#define sfHttpBadRequest                 400   ///< The server couldn't understand the request (syntax error)
+#define sfHttpUnauthorized               401   ///< The requested page needs an authentication to be accessed
+#define sfHttpForbidden                  403   ///< The requested page cannot be accessed at all, even with authentication
+#define sfHttpNotFound                   404   ///< The requested page doesn't exist
+#define sfHttpRangeNotSatisfiable        407   ///< The server can't satisfy the partial GET request (with a "Range" header field)
+
+   // 5xx: server error
+#define sfHttpInternalServerError        500   ///< The server encountered an unexpected error
+#define sfHttpNotImplemented             501   ///< The server doesn't implement a requested feature
+#define sfHttpBadGateway                 502   ///< The gateway server has received an error from the source server
+#define sfHttpServiceNotAvailable        503   ///< The server is temporarily unavailable (overloaded, in maintenance, ...)
+#define sfHttpGatewayTimeout             504   ///< The gateway server couldn't receive a response from the source server
+#define sfHttpVersionNotSupported        505   ///< The server doesn't support the requested HTTP version
+
+   // 10xx: SFML custom codes
+#define sfHttpInvalidResponse            1000   ///< Response is not a valid HTTP one
+#define sfHttpConnectionFailed           1001   ///< Connection with server failed
+
+/* Network/SocketSelector */
+#define sfSocketDone                     0   ///< The socket has sent / received the data
+#define sfSocketNotReady                 1   ///< The socket is not ready to send / receive data yet
+#define sfSocketPartial                  2   ///< The socket sent a part of the data
+#define sfSocketDisconnected             3   ///< The TCP socket has been disconnected
+#define sfSocketError                    4   ///< An unexpected error happened
+
 /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 /* Window/Cursor */
 #define sfCursorArrow                    0    ///< Arrow cursor (default)
@@ -171,8 +218,7 @@
 #define sfJoystickPovX                   6   ///< The X axis of the point-of-view hat
 #define sfJoystickPovY                   7   ///< The Y axis of the point-of-view hat
 
-/* Window/Keyboard /**/
-
+/* Window/Keyboard */
 #define sfKeyUnknown                    -1   ///< Unhandled key
 #define sfKeyA                           0   ///< The A key
 #define sfKeyB                           1   ///< The B key

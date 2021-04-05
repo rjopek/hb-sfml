@@ -150,6 +150,42 @@ extern HB_EXPORT PHB_ITEM                  hb_sfFtpDirectoryResponseItemPut( PHB
 extern HB_EXPORT sfFtpDirectoryResponse *  hb_sfFtpDirectoryResponse_param( int iParam );
 extern HB_EXPORT void                      hb_sfFtpDirectoryResponse_ret( sfFtpDirectoryResponse * );
 
+/* Network/sfHttpRequest */
+extern HB_EXPORT sfHttpRequest *  hb_sfHttpRequestItemGet( PHB_ITEM pItem );
+extern HB_EXPORT PHB_ITEM         hb_sfHttpRequestItemPut( PHB_ITEM pItem, sfHttpRequest * pSfHttpRequest );
+extern HB_EXPORT sfHttpRequest *  hb_sfHttpRequest_param( int iParam );
+extern HB_EXPORT void             hb_sfHttpRequest_ret( sfHttpRequest * );
+
+/* Network/sfPacket */
+extern HB_EXPORT sfPacket *  hb_sfPacketItemGet( PHB_ITEM pItem );
+extern HB_EXPORT PHB_ITEM    hb_sfPacketItemPut( PHB_ITEM pItem, sfPacket * pSfPacket );
+extern HB_EXPORT sfPacket *  hb_sfPacket_param( int iParam );
+extern HB_EXPORT void        hb_sfPacket_ret( sfPacket * );
+
+/* Network/sfSocketSelector */
+extern HB_EXPORT sfSocketSelector *  hb_sfSocketSelectorItemGet( PHB_ITEM pItem );
+extern HB_EXPORT PHB_ITEM            hb_sfSocketSelectorItemPut( PHB_ITEM pItem, sfSocketSelector * pSfSocketSelector );
+extern HB_EXPORT sfSocketSelector *  hb_sfSocketSelector_param( int iParam );
+extern HB_EXPORT void                hb_sfSocketSelector_ret( sfSocketSelector * );
+
+/* Network/sfTcpListener */
+extern HB_EXPORT sfTcpListener *  hb_sfTcpListenerItemGet( PHB_ITEM pItem );
+extern HB_EXPORT PHB_ITEM         hb_sfTcpListenerItemPut( PHB_ITEM pItem, sfTcpListener * pSfTcpListener );
+extern HB_EXPORT sfTcpListener *  hb_sfTcpListener_param( int iParam );
+extern HB_EXPORT void             hb_sfTcpListener_ret( sfTcpListener * );
+
+/* Network/sfTcpSocket */
+extern HB_EXPORT sfTcpSocket *  hb_sfTcpSocketItemGet( PHB_ITEM pItem );
+extern HB_EXPORT PHB_ITEM       hb_sfTcpSocketItemPut( PHB_ITEM pItem, sfTcpSocket * pSfTcpSocket );
+extern HB_EXPORT sfTcpSocket *  hb_sfTcpSocket_param( int iParam );
+extern HB_EXPORT void           hb_sfTcpSocket_ret( sfTcpSocket * );
+
+/* Network/sfUdpSocket */
+extern HB_EXPORT sfUdpSocket *  hb_sfUdpSocketItemGet( PHB_ITEM pItem );
+extern HB_EXPORT PHB_ITEM       hb_sfUdpSocketItemPut( PHB_ITEM pItem, sfUdpSocket * pSfUdpSocket );
+extern HB_EXPORT sfUdpSocket *  hb_sfUdpSocket_param( int iParam );
+extern HB_EXPORT void           hb_sfUdpSocket_ret( sfUdpSocket * );
+
 /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 /* System/sfClock */
 extern HB_EXPORT sfClock *  hb_sfClockItemGet( PHB_ITEM pItem );
