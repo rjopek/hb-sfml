@@ -10,7 +10,6 @@ PROCEDURE Main()
    LOCAL aMode := { 800, 600, 24 }
    LOCAL aEvent := {}
 
-   Alert( hb_ValToExp( hb_sfEventType() ) )
    pWindow := sfWindow_create( aMode, "My window", sfResize + sfClose, aContextSettings )
 
    // run the program as long as the window is open
