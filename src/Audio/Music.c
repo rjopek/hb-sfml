@@ -77,6 +77,19 @@ HB_FUNC( SFMUSIC_CREATEFROMFILE )
 // sfMusic* sfMusic_createFromMemory(const void* data, size_t sizeInBytes);
 
 // sfMusic* sfMusic_createFromStream(sfInputStream* stream);
+HB_FUNC( SFMUSIC_CREATEFROMSTREAM )
+{
+   sfInputStream* stream = hb_parptr( 1 );
+
+   if( hb_param( 1, HB_IT_INTEGER ) != NULL )
+   {
+      hb_sfMusic_ret( sfMusic_createFromStream( stream ) );
+   }
+   else
+   {
+      hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+   }
+}
 
 // void sfMusic_destroy(sfMusic* music);
 HB_FUNC( SFMUSIC_DESTROY )
@@ -95,12 +108,82 @@ HB_FUNC( SFMUSIC_DESTROY )
 }
 
 // void sfMusic_setLoop(sfMusic* music, sfBool loop);
+HB_FUNC( SFMUSIC_SETLOOP )
+{
+   sfMusic* music = hb_sfMusic_param( 1 );
+
+   if( music && hb_param( 2, HB_IT_LOGICAL ) != NULL )
+   {
+      sfMusic_setLoop( music, hb_parl( 2 ) );
+   }
+   else
+   {
+      hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+   }
+}
 
 // sfBool sfMusic_getLoop(const sfMusic* music);
+HB_FUNC( SFMUSIC_GETLOOP )
+{
+   const sfMusic* music = hb_sfMusic_param( 1 );
+
+   if( music )
+   {
+      hb_retl( sfMusic_getLoop( music ) );
+   }
+   else
+   {
+      hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+   }
+}
 
 // sfTime sfMusic_getDuration(const sfMusic* music);
+HB_FUNC( SFMUSIC_GETDURATION )
+{
+   const sfMusic* music = hb_sfMusic_param( 1 );
+
+   if( music )
+   {
+      sfTime times = sfMusic_getDuration( music );
+
+      PHB_ITEM info = hb_itemArrayNew( 1 );
+
+      hb_arraySetNLL( info, 1, times.microseconds );
+
+      hb_itemReturnRelease( info );
+   }
+   else
+   {
+      hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+   }
+}
 
 // sfTimeSpan sfMusic_getLoopPoints(const sfMusic* music);
+HB_FUNC( SFMUSIC_GETLOOPPOINTS )
+{
+   const sfMusic* music = hb_sfMusic_param( 1 );
+
+   if( music )
+   {
+      sfTimeSpan timespan = sfMusic_getLoopPoints( music );
+
+      PHB_ITEM pGetLoopPointsArray = hb_itemArrayNew( 2 );
+
+      PHB_ITEM pSubarray1 = hb_arrayGetItemPtr( pGetLoopPointsArray, 1 );
+      hb_arrayNew( pSubarray1, 1 );
+      hb_arraySetNLL( pSubarray1, 1, timespan.offset.microseconds );
+
+      PHB_ITEM pSubarray2 = hb_arrayGetItemPtr( pGetLoopPointsArray, 1 );
+      hb_arrayNew( pSubarray2, 1 );
+      hb_arraySetNLL( pSubarray2, 1, timespan.length.microseconds );
+
+      hb_itemReturnRelease( pGetLoopPointsArray );
+   }
+   else
+   {
+      hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+   }
+}
 
 // void sfMusic_setLoopPoints(sfMusic* music, sfTimeSpan timePoints);
 
@@ -120,8 +203,34 @@ HB_FUNC( SFMUSIC_PLAY )
 }
 
 // void sfMusic_pause(sfMusic* music);
+HB_FUNC( SFMUSIC_PAUSE )
+{
+   sfMusic* music = hb_sfMusic_param( 1 );
+
+   if( music )
+   {
+      sfMusic_pause( music );
+   }
+   else
+   {
+      hb_errRT_BASE_SubstR( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+   }
+}
 
 // void sfMusic_stop(sfMusic* music);
+HB_FUNC( SFMUSIC_STOP )
+{
+   sfMusic* music = hb_sfMusic_param( 1 );
+
+   if( music )
+   {
+      sfMusic_stop( music );
+   }
+   else
+   {
+      hb_errRT_BASE_SubstR( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+   }
+}
 
 // unsigned int sfMusic_getChannelCount(const sfMusic* music);
 

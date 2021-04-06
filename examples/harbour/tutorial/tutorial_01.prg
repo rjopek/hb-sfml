@@ -1,7 +1,6 @@
 #include "hbsfml.ch"
 
-#define EventType 1
-#define type      1
+#define EVENT_TYPE   1
 
 PROCEDURE Main()
 
@@ -19,7 +18,7 @@ PROCEDURE Main()
       DO WHILE sfWindow_pollEvent( pWindow, aEvent )
 
          // "close requested" event: we close the window
-         IF aEvent[ EventType ] == sfEvtClosed
+         IF aEvent[ EVENT_TYPE ] == sfEvtClosed
             sfWindow_close( pWindow )
          ENDIF
 

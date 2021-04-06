@@ -4,7 +4,7 @@ title: Window
 permalink: window
 ---
 
-# **Function Documentation Window**
+# **Function Window**
 
 # sfWindow_close()
 

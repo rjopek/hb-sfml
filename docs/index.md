@@ -11,6 +11,10 @@ title: "hb-sfml"
 
 View the project on [GitHub](https://github.com/rjopek/hb-sfml)
 
+### Getting Started
+
+Installing hb-sfml requires SFML including its headers. For more info see [getting started](getting_started "Getting started").
+
 ### Function reference 2.5.1
 
 > - [Audio](audio "Audio")
@@ -21,7 +25,7 @@ View the project on [GitHub](https://github.com/rjopek/hb-sfml)
 
 [![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](LICENSE)
 
-This site is based on the original [CSFM](https://github.com/SFML/CSFML/tree/master/include/SFML) documentation from files *.h authorship Laurent Gomila.
+This site is based on the original [CSFM](https://github.com/SFML/CSFML/tree/master/include/SFML) documentation from files *.h authorship - Laurent Gomila.
 
 License MIT is obviously applied only for this repository, not what it builds.
 
