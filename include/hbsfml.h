@@ -205,12 +205,6 @@ extern HB_EXPORT sfThread *  hb_sfThread_param( int iParam );
 extern HB_EXPORT void        hb_sfThread_ret( sfThread * );
 
 /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
-/* Window/sfWindow */
-extern HB_EXPORT sfWindow *  hb_sfWindowItemGet( PHB_ITEM pItem );
-extern HB_EXPORT PHB_ITEM    hb_sfWindowItemPut( PHB_ITEM pItem, sfWindow * pSfWindow );
-extern HB_EXPORT sfWindow *  hb_sfWindow_param( int iParam );
-extern HB_EXPORT void        hb_sfWindow_ret( sfWindow * );
-
 /* Window/sfContext */
 extern HB_EXPORT sfContext *  hb_sfContextItemGet( PHB_ITEM pItem );
 extern HB_EXPORT PHB_ITEM     hb_sfContextItemPut( PHB_ITEM pItem, sfContext * pSfContext );
@@ -222,6 +216,18 @@ extern HB_EXPORT sfCursor *  hb_sfCursorItemGet( PHB_ITEM pItem );
 extern HB_EXPORT PHB_ITEM    hb_sfCursorItemPut( PHB_ITEM pItem, sfCursor * pSfCursor );
 extern HB_EXPORT sfCursor *  hb_sfCursor_param( int iParam );
 extern HB_EXPORT void        hb_sfCursor_ret( sfCursor * );
+
+/* Window/sfEvent */
+extern HB_EXPORT sfEvent *  hb_sfEventItemGet( PHB_ITEM pItem );
+extern HB_EXPORT PHB_ITEM   hb_sfEventItemPut( PHB_ITEM pItem, sfEvent * pSfEvent );
+extern HB_EXPORT sfEvent *  hb_sfEvent_param( int iParam );
+extern HB_EXPORT void       hb_sfEvent_ret( sfEvent * );
+
+/* Window/sfWindow */
+extern HB_EXPORT sfWindow *  hb_sfWindowItemGet( PHB_ITEM pItem );
+extern HB_EXPORT PHB_ITEM    hb_sfWindowItemPut( PHB_ITEM pItem, sfWindow * pSfWindow );
+extern HB_EXPORT sfWindow *  hb_sfWindow_param( int iParam );
+extern HB_EXPORT void        hb_sfWindow_ret( sfWindow * );
 
 HB_EXTERN_END
 
