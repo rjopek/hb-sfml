@@ -26,13 +26,6 @@ static const HB_GC_FUNCS s_gcSfThreadFuncs =
    hb_gcDummyMark
 };
 
-sfThread * hb_sfThreadItemGet( PHB_ITEM pItem )
-{
-   sfThread ** ppSfThread = ( sfThread ** ) hb_itemGetPtrGC( pItem, &s_gcSfThreadFuncs );
-
-   return ppSfThread ? *ppSfThread : NULL;
-}
-
 PHB_ITEM hb_sfThreadItemPut( PHB_ITEM pItem, sfThread * pSfThread )
 {
    sfThread ** ppSfThread = ( sfThread ** ) hb_gcAllocate( sizeof( sfThread * ), &s_gcSfThreadFuncs );

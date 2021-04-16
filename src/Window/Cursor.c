@@ -26,13 +26,6 @@ static const HB_GC_FUNCS s_gcSfCursorFuncs =
    hb_gcDummyMark
 };
 
-sfCursor * hb_sfCursorItemGet( PHB_ITEM pItem )
-{
-   sfCursor ** ppSfCursor = ( sfCursor ** ) hb_itemGetPtrGC( pItem, &s_gcSfCursorFuncs );
-
-   return ppSfCursor ? *ppSfCursor : NULL;
-}
-
 PHB_ITEM hb_sfCursorItemPut( PHB_ITEM pItem, sfCursor * pSfCursor )
 {
    sfCursor ** ppSfCursor = ( sfCursor ** ) hb_gcAllocate( sizeof( sfCursor * ), &s_gcSfCursorFuncs );

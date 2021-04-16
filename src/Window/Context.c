@@ -26,13 +26,6 @@ static const HB_GC_FUNCS s_gcSfContextFuncs =
    hb_gcDummyMark
 };
 
-sfContext * hb_sfContextItemGet( PHB_ITEM pItem )
-{
-   sfContext ** ppSfContext = ( sfContext ** ) hb_itemGetPtrGC( pItem, &s_gcSfContextFuncs );
-
-   return ppSfContext ? *ppSfContext : NULL;
-}
-
 PHB_ITEM hb_sfContextItemPut( PHB_ITEM pItem, sfContext * pSfContext )
 {
    sfContext ** ppSfContext = ( sfContext ** ) hb_gcAllocate( sizeof( sfContext * ), &s_gcSfContextFuncs );

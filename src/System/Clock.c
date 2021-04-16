@@ -26,13 +26,6 @@ static const HB_GC_FUNCS s_gcSfClockFuncs =
    hb_gcDummyMark
 };
 
-sfClock * hb_sfClockItemGet( PHB_ITEM pItem )
-{
-   sfClock ** ppSfClock = ( sfClock ** ) hb_itemGetPtrGC( pItem, &s_gcSfClockFuncs );
-
-   return ppSfClock ? *ppSfClock : NULL;
-}
-
 PHB_ITEM hb_sfClockItemPut( PHB_ITEM pItem, sfClock * pSfClock )
 {
    sfClock ** ppSfClock = ( sfClock ** ) hb_gcAllocate( sizeof( sfClock * ), &s_gcSfClockFuncs );

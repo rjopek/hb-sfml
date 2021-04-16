@@ -26,13 +26,6 @@ static const HB_GC_FUNCS s_gcSfMutexFuncs =
    hb_gcDummyMark
 };
 
-sfMutex * hb_sfMutexItemGet( PHB_ITEM pItem )
-{
-   sfMutex ** ppSfMutex = ( sfMutex ** ) hb_itemGetPtrGC( pItem, &s_gcSfMutexFuncs );
-
-   return ppSfMutex ? *ppSfMutex : NULL;
-}
-
 PHB_ITEM hb_sfMutexItemPut( PHB_ITEM pItem, sfMutex * pSfMutex )
 {
    sfMutex ** ppSfMutex = ( sfMutex ** ) hb_gcAllocate( sizeof( sfMutex * ), &s_gcSfMutexFuncs );

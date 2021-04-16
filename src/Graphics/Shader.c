@@ -26,13 +26,6 @@ static const HB_GC_FUNCS s_gcSfShaderFuncs =
    hb_gcDummyMark
 };
 
-sfShader * hb_sfShaderItemGet( PHB_ITEM pItem )
-{
-   sfShader ** ppSfShader = ( sfShader ** ) hb_itemGetPtrGC( pItem, &s_gcSfShaderFuncs );
-
-   return ppSfShader ? *ppSfShader : NULL;
-}
-
 PHB_ITEM hb_sfShaderItemPut( PHB_ITEM pItem, sfShader * pSfShader )
 {
    sfShader ** ppSfShader = ( sfShader ** ) hb_gcAllocate( sizeof( sfShader * ), &s_gcSfShaderFuncs );

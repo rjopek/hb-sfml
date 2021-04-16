@@ -26,13 +26,6 @@ static const HB_GC_FUNCS s_gcSfSocketSelectorFuncs =
    hb_gcDummyMark
 };
 
-sfSocketSelector * hb_sfSocketSelectorItemGet( PHB_ITEM pItem )
-{
-   sfSocketSelector ** ppSfSocketSelector = ( sfSocketSelector ** ) hb_itemGetPtrGC( pItem, &s_gcSfSocketSelectorFuncs );
-
-   return ppSfSocketSelector ? *ppSfSocketSelector : NULL;
-}
-
 PHB_ITEM hb_sfSocketSelectorItemPut( PHB_ITEM pItem, sfSocketSelector * pSfSocketSelector )
 {
    sfSocketSelector ** ppSfSocketSelector = ( sfSocketSelector ** ) hb_gcAllocate( sizeof( sfSocketSelector * ), &s_gcSfSocketSelectorFuncs );

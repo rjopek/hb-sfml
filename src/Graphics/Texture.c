@@ -26,13 +26,6 @@ static const HB_GC_FUNCS s_gcSfTextureFuncs =
    hb_gcDummyMark
 };
 
-sfTexture * hb_sfTextureItemGet( PHB_ITEM pItem )
-{
-   sfTexture ** ppSfTexture = ( sfTexture ** ) hb_itemGetPtrGC( pItem, &s_gcSfTextureFuncs );
-
-   return ppSfTexture ? *ppSfTexture : NULL;
-}
-
 PHB_ITEM hb_sfTextureItemPut( PHB_ITEM pItem, sfTexture * pSfTexture )
 {
    sfTexture ** ppSfTexture = ( sfTexture ** ) hb_gcAllocate( sizeof( sfTexture * ), &s_gcSfTextureFuncs );

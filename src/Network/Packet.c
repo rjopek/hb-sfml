@@ -26,13 +26,6 @@ static const HB_GC_FUNCS s_gcSfPacketFuncs =
    hb_gcDummyMark
 };
 
-sfPacket * hb_sfPacketItemGet( PHB_ITEM pItem )
-{
-   sfPacket ** ppSfPacket = ( sfPacket ** ) hb_itemGetPtrGC( pItem, &s_gcSfPacketFuncs );
-
-   return ppSfPacket ? *ppSfPacket : NULL;
-}
-
 PHB_ITEM hb_sfPacketItemPut( PHB_ITEM pItem, sfPacket * pSfPacket )
 {
    sfPacket ** ppSfPacket = ( sfPacket ** ) hb_gcAllocate( sizeof( sfPacket * ), &s_gcSfPacketFuncs );

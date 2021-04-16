@@ -26,13 +26,6 @@ static const HB_GC_FUNCS s_gcSfImageFuncs =
    hb_gcDummyMark
 };
 
-sfImage * hb_sfImageItemGet( PHB_ITEM pItem )
-{
-   sfImage ** ppSfImage = ( sfImage ** ) hb_itemGetPtrGC( pItem, &s_gcSfImageFuncs );
-
-   return ppSfImage ? *ppSfImage : NULL;
-}
-
 PHB_ITEM hb_sfImageItemPut( PHB_ITEM pItem, sfImage * pSfImage )
 {
    sfImage ** ppSfImage = ( sfImage ** ) hb_gcAllocate( sizeof( sfImage * ), &s_gcSfImageFuncs );

@@ -26,13 +26,6 @@ static const HB_GC_FUNCS s_gcSfViewFuncs =
    hb_gcDummyMark
 };
 
-sfView * hb_sfViewItemGet( PHB_ITEM pItem )
-{
-   sfView ** ppSfView = ( sfView ** ) hb_itemGetPtrGC( pItem, &s_gcSfViewFuncs );
-
-   return ppSfView ? *ppSfView : NULL;
-}
-
 PHB_ITEM hb_sfViewItemPut( PHB_ITEM pItem, sfView * pSfView )
 {
    sfView ** ppSfView = ( sfView ** ) hb_gcAllocate( sizeof( sfView * ), &s_gcSfViewFuncs );

@@ -26,13 +26,6 @@ static const HB_GC_FUNCS s_gcSfSpriteFuncs =
    hb_gcDummyMark
 };
 
-sfSprite * hb_sfSpriteItemGet( PHB_ITEM pItem )
-{
-   sfSprite ** ppSfSprite = ( sfSprite ** ) hb_itemGetPtrGC( pItem, &s_gcSfSpriteFuncs );
-
-   return ppSfSprite ? *ppSfSprite : NULL;
-}
-
 PHB_ITEM hb_sfSpriteItemPut( PHB_ITEM pItem, sfSprite * pSfSprite )
 {
    sfSprite ** ppSfSprite = ( sfSprite ** ) hb_gcAllocate( sizeof( sfSprite * ), &s_gcSfSpriteFuncs );

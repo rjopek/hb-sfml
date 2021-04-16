@@ -26,13 +26,6 @@ static const HB_GC_FUNCS s_gcSfFtpDirectoryResponseFuncs =
    hb_gcDummyMark
 };
 
-sfFtpDirectoryResponse * hb_sfFtpDirectoryResponseItemGet( PHB_ITEM pItem )
-{
-   sfFtpDirectoryResponse ** ppSfFtpDirectoryRespons = ( sfFtpDirectoryResponse ** ) hb_itemGetPtrGC( pItem, &s_gcSfFtpDirectoryResponseFuncs );
-
-   return ppSfFtpDirectoryRespons ? *ppSfFtpDirectoryRespons : NULL;
-}
-
 PHB_ITEM hb_sfFtpDirectoryResponseItemPut( PHB_ITEM pItem, sfFtpDirectoryResponse * pSfFtpDirectoryResponse )
 {
    sfFtpDirectoryResponse ** ppSfFtpDirectoryRespons = ( sfFtpDirectoryResponse ** ) hb_gcAllocate( sizeof( sfFtpDirectoryResponse * ), &s_gcSfFtpDirectoryResponseFuncs );

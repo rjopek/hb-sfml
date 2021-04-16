@@ -26,13 +26,6 @@ static const HB_GC_FUNCS s_gcSfTextFuncs =
    hb_gcDummyMark
 };
 
-sfText * hb_sfTextItemGet( PHB_ITEM pItem )
-{
-   sfText ** ppSfText = ( sfText ** ) hb_itemGetPtrGC( pItem, &s_gcSfTextFuncs );
-
-   return ppSfText ? *ppSfText : NULL;
-}
-
 PHB_ITEM hb_sfTextItemPut( PHB_ITEM pItem, sfText * pSfText )
 {
    sfText ** ppSfText = ( sfText ** ) hb_gcAllocate( sizeof( sfText * ), &s_gcSfTextFuncs );

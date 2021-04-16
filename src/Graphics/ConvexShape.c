@@ -26,13 +26,6 @@ static const HB_GC_FUNCS s_gcSfConvexShapeFuncs =
    hb_gcDummyMark
 };
 
-sfConvexShape * hb_sfConvexShapeItemGet( PHB_ITEM pItem )
-{
-   sfConvexShape ** ppSfConvexShape = ( sfConvexShape ** ) hb_itemGetPtrGC( pItem, &s_gcSfConvexShapeFuncs );
-
-   return ppSfConvexShape ? *ppSfConvexShape : NULL;
-}
-
 PHB_ITEM hb_sfConvexShapeItemPut( PHB_ITEM pItem, sfConvexShape * pSfConvexShape )
 {
    sfConvexShape ** ppSfConvexShape = ( sfConvexShape ** ) hb_gcAllocate( sizeof( sfConvexShape * ), &s_gcSfConvexShapeFuncs );

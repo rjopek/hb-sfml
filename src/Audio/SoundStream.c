@@ -27,13 +27,6 @@ static const HB_GC_FUNCS s_gcSfSoundStreamFuncs =
    hb_gcDummyMark
 };
 
-sfSoundStream * hb_sfSoundStreamItemGet( PHB_ITEM pItem )
-{
-   sfSoundStream ** ppSfSoundStream = ( sfSoundStream ** ) hb_itemGetPtrGC( pItem, &s_gcSfSoundStreamFuncs );
-
-   return ppSfSoundStream ? *ppSfSoundStream : NULL;
-}
-
 PHB_ITEM hb_sfSoundStreamItemPut( PHB_ITEM pItem, sfSoundStream * pSfSoundStream )
 {
    sfSoundStream ** ppSfSoundStream = ( sfSoundStream ** ) hb_gcAllocate( sizeof( sfSoundStream * ), &s_gcSfSoundStreamFuncs );

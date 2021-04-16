@@ -26,13 +26,6 @@ static const HB_GC_FUNCS s_gcSfMusicFuncs =
    hb_gcDummyMark
 };
 
-sfMusic * hb_sfMusicItemGet( PHB_ITEM pItem )
-{
-   sfMusic ** ppSfMusic = ( sfMusic ** ) hb_itemGetPtrGC( pItem, &s_gcSfMusicFuncs );
-
-   return ppSfMusic ? *ppSfMusic : NULL;
-}
-
 PHB_ITEM hb_sfMusicItemPut( PHB_ITEM pItem, sfMusic * pSfMusic )
 {
    sfMusic ** ppSfMusic = ( sfMusic ** ) hb_gcAllocate( sizeof( sfMusic * ), &s_gcSfMusicFuncs );

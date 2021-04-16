@@ -26,13 +26,6 @@ static const HB_GC_FUNCS s_gcSfWindowFuncs =
    hb_gcDummyMark
 };
 
-sfWindow * hb_sfWindowItemGet( PHB_ITEM pItem )
-{
-   sfWindow ** ppSfWindow = ( sfWindow ** ) hb_itemGetPtrGC( pItem, &s_gcSfWindowFuncs );
-
-   return ppSfWindow ? *ppSfWindow : NULL;
-}
-
 PHB_ITEM hb_sfWindowItemPut( PHB_ITEM pItem, sfWindow * pSfWindow )
 {
    sfWindow ** ppSfWindow = ( sfWindow ** ) hb_gcAllocate( sizeof( sfWindow * ), &s_gcSfWindowFuncs );
@@ -51,8 +44,8 @@ sfWindow * hb_sfWindow_param( int iParam )
    }
    else
    {
-      hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
-      return NULL;
+      //hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+      return *ppSfWindow /* NULL */;
    }
 }
 

@@ -26,13 +26,6 @@ static const HB_GC_FUNCS s_gcSfFontFuncs =
    hb_gcDummyMark
 };
 
-sfFont * hb_sfFontItemGet( PHB_ITEM pItem )
-{
-   sfFont ** ppSfFont = ( sfFont ** ) hb_itemGetPtrGC( pItem, &s_gcSfFontFuncs );
-
-   return ppSfFont ? *ppSfFont : NULL;
-}
-
 PHB_ITEM hb_sfFontItemPut( PHB_ITEM pItem, sfFont * pSfFont )
 {
    sfFont ** ppSfFont = ( sfFont ** ) hb_gcAllocate( sizeof( sfFont * ), &s_gcSfFontFuncs );

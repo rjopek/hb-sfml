@@ -26,13 +26,6 @@ static const HB_GC_FUNCS s_gcSfTcpSocketFuncs =
    hb_gcDummyMark
 };
 
-sfTcpSocket * hb_sfTcpSocketItemGet( PHB_ITEM pItem )
-{
-   sfTcpSocket ** ppSfTcpSocket = ( sfTcpSocket ** ) hb_itemGetPtrGC( pItem, &s_gcSfTcpSocketFuncs );
-
-   return ppSfTcpSocket ? *ppSfTcpSocket : NULL;
-}
-
 PHB_ITEM hb_sfTcpSocketItemPut( PHB_ITEM pItem, sfTcpSocket * pSfTcpSocket )
 {
    sfTcpSocket ** ppSfTcpSocket = ( sfTcpSocket ** ) hb_gcAllocate( sizeof( sfTcpSocket * ), &s_gcSfTcpSocketFuncs );

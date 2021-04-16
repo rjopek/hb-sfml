@@ -26,13 +26,6 @@ static const HB_GC_FUNCS s_gcSfVertexArrayFuncs =
    hb_gcDummyMark
 };
 
-sfVertexArray * hb_sfVertexArrayItemGet( PHB_ITEM pItem )
-{
-   sfVertexArray ** ppSfVertexArray = ( sfVertexArray ** ) hb_itemGetPtrGC( pItem, &s_gcSfVertexArrayFuncs );
-
-   return ppSfVertexArray ? *ppSfVertexArray : NULL;
-}
-
 PHB_ITEM hb_sfVertexArrayItemPut( PHB_ITEM pItem, sfVertexArray * pSfVertexArray )
 {
    sfVertexArray ** ppSfVertexArray = ( sfVertexArray ** ) hb_gcAllocate( sizeof( sfVertexArray * ), &s_gcSfVertexArrayFuncs );

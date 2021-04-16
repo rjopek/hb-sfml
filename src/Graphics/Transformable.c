@@ -26,13 +26,6 @@ static const HB_GC_FUNCS s_gcSfTransformableFuncs =
    hb_gcDummyMark
 };
 
-sfTransformable * hb_sfTransformableItemGet( PHB_ITEM pItem )
-{
-   sfTransformable ** ppSfTransformable = ( sfTransformable ** ) hb_itemGetPtrGC( pItem, &s_gcSfTransformableFuncs );
-
-   return ppSfTransformable ? *ppSfTransformable : NULL;
-}
-
 PHB_ITEM hb_sfTransformableItemPut( PHB_ITEM pItem, sfTransformable * pSfTransformable )
 {
    sfTransformable ** ppSfTransformable = ( sfTransformable ** ) hb_gcAllocate( sizeof( sfTransformable * ), &s_gcSfTransformableFuncs );

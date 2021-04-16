@@ -26,13 +26,6 @@ static const HB_GC_FUNCS s_gcSfRenderTextureFuncs =
    hb_gcDummyMark
 };
 
-sfRenderTexture * hb_sfRenderTextureItemGet( PHB_ITEM pItem )
-{
-   sfRenderTexture ** ppSfRenderTexture = ( sfRenderTexture ** ) hb_itemGetPtrGC( pItem, &s_gcSfRenderTextureFuncs );
-
-   return ppSfRenderTexture ? *ppSfRenderTexture : NULL;
-}
-
 PHB_ITEM hb_sfRenderTextureItemPut( PHB_ITEM pItem, sfRenderTexture * pSfRenderTexture )
 {
    sfRenderTexture ** ppSfRenderTexture = ( sfRenderTexture ** ) hb_gcAllocate( sizeof( sfRenderTexture * ), &s_gcSfRenderTextureFuncs );

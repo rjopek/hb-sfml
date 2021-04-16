@@ -26,13 +26,6 @@ static const HB_GC_FUNCS s_gcSfVertexBufferFuncs =
    hb_gcDummyMark
 };
 
-sfVertexBuffer * hb_sfVertexBufferItemGet( PHB_ITEM pItem )
-{
-   sfVertexBuffer ** ppSfVertexBuffer = ( sfVertexBuffer ** ) hb_itemGetPtrGC( pItem, &s_gcSfVertexBufferFuncs );
-
-   return ppSfVertexBuffer ? *ppSfVertexBuffer : NULL;
-}
-
 PHB_ITEM hb_sfVertexBufferItemPut( PHB_ITEM pItem, sfVertexBuffer * pSfVertexBuffer )
 {
    sfVertexBuffer ** ppSfVertexBuffer = ( sfVertexBuffer ** ) hb_gcAllocate( sizeof( sfVertexBuffer * ), &s_gcSfVertexBufferFuncs );

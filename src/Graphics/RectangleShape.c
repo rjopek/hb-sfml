@@ -26,13 +26,6 @@ static const HB_GC_FUNCS s_gcSfRectangleShapeFuncs =
    hb_gcDummyMark
 };
 
-sfRectangleShape * hb_sfRectangleShapeItemGet( PHB_ITEM pItem )
-{
-   sfRectangleShape ** ppSfRectangleShape = ( sfRectangleShape ** ) hb_itemGetPtrGC( pItem, &s_gcSfRectangleShapeFuncs );
-
-   return ppSfRectangleShape ? *ppSfRectangleShape : NULL;
-}
-
 PHB_ITEM hb_sfRectangleShapeItemPut( PHB_ITEM pItem, sfRectangleShape * pSfRectangleShape )
 {
    sfRectangleShape ** ppSfRectangleShape = ( sfRectangleShape ** ) hb_gcAllocate( sizeof( sfRectangleShape * ), &s_gcSfRectangleShapeFuncs );

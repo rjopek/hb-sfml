@@ -27,13 +27,6 @@ static const HB_GC_FUNCS s_gcSfSoundRecorderFuncs =
    hb_gcDummyMark
 };
 
-sfSoundRecorder * hb_sfSoundRecorderItemGet( PHB_ITEM pItem )
-{
-   sfSoundRecorder ** ppSfSoundRecorder = ( sfSoundRecorder ** ) hb_itemGetPtrGC( pItem, &s_gcSfSoundRecorderFuncs );
-
-   return ppSfSoundRecorder ? *ppSfSoundRecorder : NULL;
-}
-
 PHB_ITEM hb_sfSoundRecorderItemPut( PHB_ITEM pItem, sfSoundRecorder * pSfSoundBuffer )
 {
    sfSoundRecorder ** ppSfSoundRecorder = ( sfSoundRecorder ** ) hb_gcAllocate( sizeof( sfSoundRecorder * ), &s_gcSfSoundRecorderFuncs );

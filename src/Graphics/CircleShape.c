@@ -26,13 +26,6 @@ static const HB_GC_FUNCS s_gcSfCircleShapeFuncs =
    hb_gcDummyMark
 };
 
-sfCircleShape * hb_sfCircleShapeItemGet( PHB_ITEM pItem )
-{
-   sfCircleShape ** ppSfCircleShape = ( sfCircleShape ** ) hb_itemGetPtrGC( pItem, &s_gcSfCircleShapeFuncs );
-
-   return ppSfCircleShape ? *ppSfCircleShape : NULL;
-}
-
 PHB_ITEM hb_sfCircleShapeItemPut( PHB_ITEM pItem, sfCircleShape * pSfCircleShape )
 {
    sfCircleShape ** ppSfCircleShape = ( sfCircleShape ** ) hb_gcAllocate( sizeof( sfCircleShape * ), &s_gcSfCircleShapeFuncs );

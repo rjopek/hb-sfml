@@ -26,13 +26,6 @@ static const HB_GC_FUNCS s_gcSfHttpRequestFuncs =
    hb_gcDummyMark
 };
 
-sfHttpRequest * hb_sfHttpRequestItemGet( PHB_ITEM pItem )
-{
-   sfHttpRequest ** ppSfHttpRequest = ( sfHttpRequest ** ) hb_itemGetPtrGC( pItem, &s_gcSfHttpRequestFuncs );
-
-   return ppSfHttpRequest ? *ppSfHttpRequest : NULL;
-}
-
 PHB_ITEM hb_sfHttpRequestItemPut( PHB_ITEM pItem, sfHttpRequest * pSfHttpRequest )
 {
    sfHttpRequest ** ppSfHttpRequest = ( sfHttpRequest ** ) hb_gcAllocate( sizeof( sfHttpRequest * ), &s_gcSfHttpRequestFuncs );

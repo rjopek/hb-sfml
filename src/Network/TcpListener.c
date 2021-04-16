@@ -26,13 +26,6 @@ static const HB_GC_FUNCS s_gcSfTcpListenerFuncs =
    hb_gcDummyMark
 };
 
-sfTcpListener * hb_sfTcpListenerItemGet( PHB_ITEM pItem )
-{
-   sfTcpListener ** ppSfTcpListener = ( sfTcpListener ** ) hb_itemGetPtrGC( pItem, &s_gcSfTcpListenerFuncs );
-
-   return ppSfTcpListener ? *ppSfTcpListener : NULL;
-}
-
 PHB_ITEM hb_sfTcpListenerItemPut( PHB_ITEM pItem, sfTcpListener * pSfTcpListener )
 {
    sfTcpListener ** ppSfTcpListener = ( sfTcpListener ** ) hb_gcAllocate( sizeof( sfTcpListener * ), &s_gcSfTcpListenerFuncs );

@@ -26,13 +26,6 @@ static const HB_GC_FUNCS s_gcSfShapeFuncs =
    hb_gcDummyMark
 };
 
-sfShape * hb_sfShapeItemGet( PHB_ITEM pItem )
-{
-   sfShape ** ppSfShape = ( sfShape ** ) hb_itemGetPtrGC( pItem, &s_gcSfShapeFuncs );
-
-   return ppSfShape ? *ppSfShape : NULL;
-}
-
 PHB_ITEM hb_sfShapeItemPut( PHB_ITEM pItem, sfShape * pSfShape )
 {
    sfShape ** ppSfShape = ( sfShape ** ) hb_gcAllocate( sizeof( sfShape * ), &s_gcSfShapeFuncs );

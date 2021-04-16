@@ -26,13 +26,6 @@ static const HB_GC_FUNCS s_gcSfRenderWindowFuncs =
    hb_gcDummyMark
 };
 
-sfRenderWindow * hb_sfRenderWindowItemGet( PHB_ITEM pItem )
-{
-   sfRenderWindow ** ppSfRenderWindow = ( sfRenderWindow ** ) hb_itemGetPtrGC( pItem, &s_gcSfRenderWindowFuncs );
-
-   return ppSfRenderWindow ? *ppSfRenderWindow : NULL;
-}
-
 PHB_ITEM hb_sfRenderWindowItemPut( PHB_ITEM pItem, sfRenderWindow * pSfRenderWindow )
 {
    sfRenderWindow ** ppSfRenderWindow = ( sfRenderWindow ** ) hb_gcAllocate( sizeof( sfRenderWindow * ), &s_gcSfRenderWindowFuncs );

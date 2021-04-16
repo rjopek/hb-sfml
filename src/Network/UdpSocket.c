@@ -26,13 +26,6 @@ static const HB_GC_FUNCS s_gcSfUdpSocketFuncs =
    hb_gcDummyMark
 };
 
-sfUdpSocket * hb_sfUdpSocketItemGet( PHB_ITEM pItem )
-{
-   sfUdpSocket ** ppSfUdpSocket = ( sfUdpSocket ** ) hb_itemGetPtrGC( pItem, &s_gcSfUdpSocketFuncs );
-
-   return ppSfUdpSocket ? *ppSfUdpSocket : NULL;
-}
-
 PHB_ITEM hb_sfUdpSocketItemPut( PHB_ITEM pItem, sfUdpSocket * pSfUdpSocket )
 {
    sfUdpSocket ** ppSfUdpSocket = ( sfUdpSocket ** ) hb_gcAllocate( sizeof( sfUdpSocket * ), &s_gcSfUdpSocketFuncs );
