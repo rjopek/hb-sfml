@@ -226,16 +226,100 @@ HB_FUNC( SFMUSIC_STOP )
 }
 
 // unsigned int sfMusic_getChannelCount(const sfMusic* music);
+HB_FUNC( SFMUSIC_GETCHANNELCOUNT )
+{
+   const sfMusic* music = hb_sfMusic_param( 1 );
+
+   if( music )
+   {
+      hb_retni( ( unsigned int ) sfMusic_getChannelCount( music ) );
+   }
+   else
+   {
+      hb_errRT_BASE_SubstR( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+   }
+}
 
 // unsigned int sfMusic_getSampleRate(const sfMusic* music);
+HB_FUNC( SFMUSIC_GETSAMPLERATE )
+{
+   const sfMusic* music = hb_sfMusic_param( 1 );
+
+   if( music )
+   {
+      hb_retni( ( unsigned int ) sfMusic_getSampleRate( music ) );
+   }
+   else
+   {
+      hb_errRT_BASE_SubstR( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+   }
+}
 
 // sfSoundStatus sfMusic_getStatus(const sfMusic* music);
+HB_FUNC( SFMUSIC_GETSTATUS )
+{
+   const sfMusic* music = hb_sfMusic_param( 1 );
+
+   if( music )
+   {
+      hb_retni( ( sfSoundStatus ) sfMusic_getStatus( music ) );
+   }
+   else
+   {
+      hb_errRT_BASE_SubstR( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+   }
+}
 
 // sfTime sfMusic_getPlayingOffset(const sfMusic* music);
+HB_FUNC( SFMUSIC_GETPLAYINGOFFSET )
+{
+   const sfMusic* music = hb_sfMusic_param( 1 );
+
+   if( music )
+   {
+      sfTime sftime = sfMusic_getPlayingOffset( music );
+
+      PHB_ITEM pGetPlayingOffsetArray = hb_itemArrayNew( 1 );
+
+      hb_arraySetNLL( pGetPlayingOffsetArray, 1, sftime.microseconds );
+
+      hb_itemReturnRelease( pGetPlayingOffsetArray );
+   }
+   else
+   {
+      hb_errRT_BASE_SubstR( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+   }
+}
 
 // void sfMusic_setPitch(sfMusic* music, float pitch);
+HB_FUNC( SFMUSIC_SETPITCH )
+{
+   sfMusic* music = hb_sfMusic_param( 1 );
+
+   if( music && hb_param( 1, HB_IT_NUMERIC ) != NULL )
+   {
+      sfMusic_setPitch( music, ( float ) hb_parnd( 2 ) );
+   }
+   else
+   {
+      hb_errRT_BASE_SubstR( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+   }
+}
 
 // void sfMusic_setVolume(sfMusic* music, float volume);
+HB_FUNC( SFMUSIC_SETVOLUME )
+{
+   sfMusic* music = hb_sfMusic_param( 1 );
+
+   if( music && hb_param( 1, HB_IT_NUMERIC ) != NULL )
+   {
+      sfMusic_setVolume( music, ( float ) hb_parnd( 2 ) );
+   }
+   else
+   {
+      hb_errRT_BASE_SubstR( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+   }
+}
 
 // void sfMusic_setPosition(sfMusic* music, sfVector3f position);
 
