@@ -13,13 +13,13 @@ HB_FUNC( SFVIDEOMODE_GETDESKTOPMODE )
 {
    sfVideoMode sfvideomode = sfVideoMode_getDesktopMode();
 
-   PHB_ITEM info = hb_itemArrayNew( 5 );
+   PHB_ITEM pVideoModeArray = hb_itemArrayNew( 5 );
 
-   hb_arraySetNI( info, 1, ( unsigned int ) sfvideomode.width );
-   hb_arraySetNI( info, 2, ( unsigned int ) sfvideomode.height );
-   hb_arraySetNI( info, 3, ( unsigned int ) sfvideomode.bitsPerPixel );
+   hb_arraySetNI( pVideoModeArray, 1, ( unsigned int ) sfvideomode.width );
+   hb_arraySetNI( pVideoModeArray, 2, ( unsigned int ) sfvideomode.height );
+   hb_arraySetNI( pVideoModeArray, 3, ( unsigned int ) sfvideomode.bitsPerPixel );
 
-   hb_itemReturnRelease( info );
+   hb_itemReturnRelease( pVideoModeArray );
 }
 
 // const sfVideoMode* sfVideoMode_getFullscreenModes(size_t* count);

@@ -139,11 +139,11 @@ HB_FUNC( SFMUSIC_GETDURATION )
    {
       sfTime times = sfMusic_getDuration( music );
 
-      PHB_ITEM info = hb_itemArrayNew( 1 );
+      PHB_ITEM pTimeArray = hb_itemArrayNew( 1 );
 
-      hb_arraySetNLL( info, 1, times.microseconds );
+      hb_arraySetNLL( pTimeArray, 1, times.microseconds );
 
-      hb_itemReturnRelease( info );
+      hb_itemReturnRelease( pTimeArray );
    }
    else
    {
@@ -160,17 +160,21 @@ HB_FUNC( SFMUSIC_GETLOOPPOINTS )
    {
       sfTimeSpan timespan = sfMusic_getLoopPoints( music );
 
-      PHB_ITEM pGetLoopPointsArray = hb_itemArrayNew( 2 );
+      PHB_ITEM pTimeSpanArray = hb_itemArrayNew( 2 );
 
-      PHB_ITEM pSubarray1 = hb_arrayGetItemPtr( pGetLoopPointsArray, 1 );
-      hb_arrayNew( pSubarray1, 1 );
-      hb_arraySetNLL( pSubarray1, 1, timespan.offset.microseconds );
+         // sfTime offset
+         PHB_ITEM pSubarrayTime1 = hb_arrayGetItemPtr( pTimeSpanArray, 1 );
 
-      PHB_ITEM pSubarray2 = hb_arrayGetItemPtr( pGetLoopPointsArray, 1 );
-      hb_arrayNew( pSubarray2, 1 );
-      hb_arraySetNLL( pSubarray2, 1, timespan.length.microseconds );
+         hb_arrayNew( pSubarrayTime1, 1 );
+         hb_arraySetNLL( pSubarrayTime1, 1, timespan.offset.microseconds );
 
-      hb_itemReturnRelease( pGetLoopPointsArray );
+         // sfTime length
+         PHB_ITEM pSubarrayTime2 = hb_arrayGetItemPtr( pTimeSpanArray, 2 );
+
+         hb_arrayNew( pSubarrayTime2, 1 );
+         hb_arraySetNLL( pSubarrayTime2, 1, timespan.length.microseconds );
+
+      hb_itemReturnRelease( pTimeSpanArray );
    }
    else
    {
@@ -179,6 +183,33 @@ HB_FUNC( SFMUSIC_GETLOOPPOINTS )
 }
 
 // void sfMusic_setLoopPoints(sfMusic* music, sfTimeSpan timePoints);
+HB_FUNC( SFMUSIC_SETLOOPPOINTS )
+{
+   PHB_ITEM pItem;
+
+   sfMusic* music = hb_sfMusic_param( 1 );
+
+   if( music && ( pItem = hb_param( 1, HB_IT_ARRAY ) ) != NULL && hb_arrayLen( pItem ) == 2 )
+   {
+      sfTimeSpan timePoints;
+
+      // sfTime offset
+      PHB_ITEM pSubarrayTime1 = hb_arrayGetItemPtr( pItem, 1 );
+
+      timePoints.offset.microseconds = hb_arrayGetNLL( pSubarrayTime1, 1 );
+
+      // sfTime length
+      PHB_ITEM pSubarrayTime2 = hb_arrayGetItemPtr( pItem, 2 );
+
+      timePoints.length.microseconds = hb_arrayGetNLL( pSubarrayTime2, 1 );
+
+      sfMusic_setLoopPoints( music, timePoints );
+   }
+   else
+   {
+      hb_errRT_BASE_SubstR( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+   }
+}
 
 // void sfMusic_play(sfMusic* music);
 HB_FUNC( SFMUSIC_PLAY )
@@ -279,11 +310,11 @@ HB_FUNC( SFMUSIC_GETPLAYINGOFFSET )
    {
       sfTime sftime = sfMusic_getPlayingOffset( music );
 
-      PHB_ITEM pGetPlayingOffsetArray = hb_itemArrayNew( 1 );
+      PHB_ITEM pTimeArray = hb_itemArrayNew( 1 );
 
-      hb_arraySetNLL( pGetPlayingOffsetArray, 1, sftime.microseconds );
+      hb_arraySetNLL( pTimeArray, 1, sftime.microseconds );
 
-      hb_itemReturnRelease( pGetPlayingOffsetArray );
+      hb_itemReturnRelease( pTimeArray );
    }
    else
    {

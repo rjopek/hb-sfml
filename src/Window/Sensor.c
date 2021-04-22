@@ -41,13 +41,13 @@ HB_FUNC( sfSensor_getValue )
    {
       sfVector3f sfvector3f = sfSensor_getValue( ( unsigned int ) hb_parni( 1 ) );
 
-      PHB_ITEM info = hb_itemArrayNew( 3 );
+      PHB_ITEM pVector3fArray = hb_itemArrayNew( 3 );
 
-      hb_arraySetND( info, 1, ( float ) sfvector3f.x );
-      hb_arraySetND( info, 2, ( float ) sfvector3f.y );
-      hb_arraySetND( info, 3, ( float ) sfvector3f.z );
+      hb_arraySetND( pVector3fArray, 1, ( float ) sfvector3f.x );
+      hb_arraySetND( pVector3fArray, 2, ( float ) sfvector3f.y );
+      hb_arraySetND( pVector3fArray, 3, ( float ) sfvector3f.z );
 
-      hb_itemReturnRelease( info );
+      hb_itemReturnRelease( pVector3fArray );
    }
    else
    {

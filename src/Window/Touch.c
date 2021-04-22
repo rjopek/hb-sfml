@@ -30,12 +30,12 @@ HB_FUNC( SFTOUCH_GETPOSITION )
    {
       sfVector2i sfvector2i = sfTouch_getPosition( ( unsigned int ) hb_parni( 1 ), relativeTo );
 
-      PHB_ITEM info = hb_itemArrayNew( 2 );
+      PHB_ITEM pVector2iArray = hb_itemArrayNew( 2 );
 
-      hb_arraySetNI( info, 1, sfvector2i.x );
-      hb_arraySetNI( info, 2, sfvector2i.y );
+      hb_arraySetNI( pVector2iArray, 1, sfvector2i.x );
+      hb_arraySetNI( pVector2iArray, 2, sfvector2i.y );
 
-      hb_itemReturnRelease( info );
+      hb_itemReturnRelease( pVector2iArray );
    }
    else
    {

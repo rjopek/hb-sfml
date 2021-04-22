@@ -73,7 +73,7 @@ HB_FUNC( sfCursor_createFromPixels )
       hotspot.x = ( unsigned int ) hb_arrayGetNI( pItem2, 1 );
       hotspot.y = ( unsigned int ) hb_arrayGetNI( pItem2, 2 );
 
-      hb_sfCursor_ret( sfCursor_createFromPixels( ( const unsigned char * ) hb_parc( 1 ), size, hotspot ) );
+      hb_sfCursor_ret( sfCursor_createFromPixels( ( const unsigned char * ) hb_parptr( 1 ), size, hotspot ) );
    }
    else
    {

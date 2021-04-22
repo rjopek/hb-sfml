@@ -100,17 +100,17 @@ HB_FUNC( SFCONTEXT_GETSETTINGS )
    {
       sfContextSettings sfcontextsettings = sfContext_getSettings( context );
 
-      PHB_ITEM info = hb_itemArrayNew( 7 );
+      PHB_ITEM pContextSettingsArray = hb_itemArrayNew( 7 );
 
-      hb_arraySetNI( info, 1, ( unsigned int ) sfcontextsettings.depthBits );
-      hb_arraySetNI( info, 2, ( unsigned int ) sfcontextsettings.stencilBits );
-      hb_arraySetNI( info, 3, ( unsigned int ) sfcontextsettings.antialiasingLevel );
-      hb_arraySetNI( info, 4, ( unsigned int ) sfcontextsettings.majorVersion );
-      hb_arraySetNI( info, 5, ( unsigned int ) sfcontextsettings.minorVersion );
-      hb_arraySetNI( info, 6, ( unsigned int ) sfcontextsettings.attributeFlags );
-      hb_arraySetL( info, 7,                   sfcontextsettings.sRgbCapable );
+      hb_arraySetNI( pContextSettingsArray, 1, ( unsigned int ) sfcontextsettings.depthBits );
+      hb_arraySetNI( pContextSettingsArray, 2, ( unsigned int ) sfcontextsettings.stencilBits );
+      hb_arraySetNI( pContextSettingsArray, 3, ( unsigned int ) sfcontextsettings.antialiasingLevel );
+      hb_arraySetNI( pContextSettingsArray, 4, ( unsigned int ) sfcontextsettings.majorVersion );
+      hb_arraySetNI( pContextSettingsArray, 5, ( unsigned int ) sfcontextsettings.minorVersion );
+      hb_arraySetNI( pContextSettingsArray, 6, ( unsigned int ) sfcontextsettings.attributeFlags );
+      hb_arraySetL( pContextSettingsArray, 7,                   sfcontextsettings.sRgbCapable );
 
-      hb_itemReturnRelease( info );
+      hb_itemReturnRelease( pContextSettingsArray );
    }
    else
    {

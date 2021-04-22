@@ -44,8 +44,8 @@ sfWindow * hb_sfWindow_param( int iParam )
    }
    else
    {
-      //hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
-      return *ppSfWindow /* NULL */;
+      hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+      return NULL;
    }
 }
 
@@ -94,7 +94,7 @@ HB_FUNC( SFWINDOW_CREATEUNICODE )
    PHB_ITEM pItem1, pItem2;
 
    if( ( pItem1 = hb_param( 1, HB_IT_ARRAY ) ) != NULL && hb_arrayLen( pItem1 ) == 3 &&
-                  hb_param( 2, HB_IT_STRING )  != NULL &&
+                  hb_param( 2, HB_IT_STRING  ) != NULL &&
                   hb_param( 3, HB_IT_INTEGER ) != NULL &&
        ( pItem2 = hb_param( 4, HB_IT_ARRAY ) ) != NULL && hb_arrayLen( pItem2 ) == 7 )
    {
@@ -181,17 +181,17 @@ HB_FUNC( SFWINDOW_GETSETTINGS )
    {
       sfContextSettings sfcontextsettings = sfWindow_getSettings( window );
 
-      PHB_ITEM info = hb_itemArrayNew( 7 );
+      PHB_ITEM pContextSettingsArray = hb_itemArrayNew( 7 );
 
-      hb_arraySetNI( info, 1, ( unsigned int ) sfcontextsettings.depthBits );
-      hb_arraySetNI( info, 2, ( unsigned int ) sfcontextsettings.stencilBits );
-      hb_arraySetNI( info, 3, ( unsigned int ) sfcontextsettings.antialiasingLevel );
-      hb_arraySetNI( info, 4, ( unsigned int ) sfcontextsettings.majorVersion );
-      hb_arraySetNI( info, 5, ( unsigned int ) sfcontextsettings.minorVersion );
-      hb_arraySetNI( info, 6, ( unsigned int ) sfcontextsettings.attributeFlags );
-      hb_arraySetL( info, 7,                   sfcontextsettings.sRgbCapable );
+      hb_arraySetNI( pContextSettingsArray, 1, ( unsigned int ) sfcontextsettings.depthBits );
+      hb_arraySetNI( pContextSettingsArray, 2, ( unsigned int ) sfcontextsettings.stencilBits );
+      hb_arraySetNI( pContextSettingsArray, 3, ( unsigned int ) sfcontextsettings.antialiasingLevel );
+      hb_arraySetNI( pContextSettingsArray, 4, ( unsigned int ) sfcontextsettings.majorVersion );
+      hb_arraySetNI( pContextSettingsArray, 5, ( unsigned int ) sfcontextsettings.minorVersion );
+      hb_arraySetNI( pContextSettingsArray, 6, ( unsigned int ) sfcontextsettings.attributeFlags );
+      hb_arraySetL( pContextSettingsArray, 7,                   sfcontextsettings.sRgbCapable );
 
-      hb_itemReturnRelease( info );
+      hb_itemReturnRelease( pContextSettingsArray );
    }
    else
    {
@@ -200,6 +200,120 @@ HB_FUNC( SFWINDOW_GETSETTINGS )
 }
 
 // sfBool sfWindow_pollEvent(sfWindow* window, sfEvent* event);
+HB_FUNC( SFWINDOW_POLLEVENT )
+{
+   PHB_ITEM pItem;
+
+   sfWindow* window = hb_sfWindow_param( 1 );
+
+   if( window && ( pItem = hb_param( 2, HB_IT_ARRAY ) ) != NULL /* && hb_arrayLen( pItem ) == 13 */ )
+   {
+      sfEvent event;
+
+      event.type ;// = hb_arrayGetNI( pItem, sfEvtClosed );
+      //
+      //event.type = pEventTypeArray //hb_arrayGetNI( pItem, 1 );
+/*
+      // sfSizeEvent size
+      PHB_ITEM pSubarraySizeEvent = hb_arrayGetItemPtr( pItem, 2 );
+
+      event->size.type   =                  hb_arrayGetNI( pSubarraySizeEvent, 1 );
+      event->size.width  = ( unsigned int ) hb_arrayGetNI( pSubarraySizeEvent, 2 );
+      event->size.height = ( unsigned int ) hb_arrayGetNI( pSubarraySizeEvent, 3 );
+
+      // sfKeyEvent key
+      PHB_ITEM pSubarrayKeyEvent = hb_arrayGetItemPtr( pItem, 3 );
+
+      event->key.type    = hb_arrayGetNI( pSubarrayKeyEvent, 1 );
+      event->key.code    = hb_arrayGetNI( pSubarrayKeyEvent, 2 );
+      event->key.alt     = hb_arrayGetL( pSubarrayKeyEvent, 3 );
+      event->key.control = hb_arrayGetL( pSubarrayKeyEvent, 4 );
+      event->key.shift   = hb_arrayGetL( pSubarrayKeyEvent, 5 );
+      event->key.system  = hb_arrayGetL( pSubarrayKeyEvent, 6 );
+
+      // sfTextEvent text
+      PHB_ITEM pSubarrayTextEvent = hb_arrayGetItemPtr( pItem, 4 );
+
+      event->text.type    =                  hb_arrayGetNI( pSubarrayTextEvent, 1 );
+      event->text.unicode = ( unsigned int ) hb_arrayGetNI( pSubarrayTextEvent, 2 );
+
+      // sfMouseMoveEvent mouseMove
+      PHB_ITEM pSubarrayMouseMoveEvent = hb_arrayGetItemPtr( pItem, 5 );
+
+      event->mouseMove.type = hb_arrayGetNI( pSubarrayMouseMoveEvent, 1 );
+      event->mouseMove.x    = hb_arrayGetNI( pSubarrayMouseMoveEvent, 2 );
+      event->mouseMove.y    = hb_arrayGetNI( pSubarrayMouseMoveEvent, 3 );
+
+      // sfMouseButtonEvent mouseButton
+      PHB_ITEM pSubarrayMouseButtonEvent = hb_arrayGetItemPtr( pItem, 6 );
+
+      event->mouseButton.type   = hb_arrayGetNI( pSubarrayMouseButtonEvent, 1 );
+      event->mouseButton.button = hb_arrayGetNI( pSubarrayMouseButtonEvent, 2 );
+      event->mouseButton.x      = hb_arrayGetNI( pSubarrayMouseButtonEvent, 3 );
+      event->mouseButton.y      = hb_arrayGetNI( pSubarrayMouseButtonEvent, 4 );
+
+      // sfMouseWheelEvent mouseWheel
+      PHB_ITEM pSubarrayMouseWheelEvent = hb_arrayGetItemPtr( pItem, 7 );
+
+      event->mouseWheel.type  = hb_arrayGetNI( pSubarrayMouseWheelEvent, 1 );
+      event->mouseWheel.delta = hb_arrayGetNI( pSubarrayMouseWheelEvent, 2 );
+      event->mouseWheel.x     = hb_arrayGetNI( pSubarrayMouseWheelEvent, 3 );
+      event->mouseWheel.y     = hb_arrayGetNI( pSubarrayMouseWheelEvent, 4 );
+
+      // sfMouseWheelScrollEvent mouseWheelScroll
+      PHB_ITEM pSubarrayMouseWheelScrollEvent = hb_arrayGetItemPtr( pItem, 8 );
+
+      event->mouseWheelScroll.type  =           hb_arrayGetNI( pSubarrayMouseWheelScrollEvent, 1 );
+      event->mouseWheelScroll.wheel =           hb_arrayGetNI( pSubarrayMouseWheelScrollEvent, 2 );
+      event->mouseWheelScroll.delta = ( float ) hb_arrayGetND( pSubarrayMouseWheelScrollEvent, 3 );
+      event->mouseWheelScroll.x     =           hb_arrayGetNI( pSubarrayMouseWheelScrollEvent, 4 );
+      event->mouseWheelScroll.y     =           hb_arrayGetNI( pSubarrayMouseWheelScrollEvent, 5 );
+
+      // sfJoystickMoveEvent joystickMove
+      PHB_ITEM pSubarrayJoystickMoveEvent = hb_arrayGetItemPtr( pItem, 9 );
+
+      event->joystickMove.type       =                  hb_arrayGetNI( pSubarrayJoystickMoveEvent, 1 );
+      event->joystickMove.joystickId = ( unsigned int ) hb_arrayGetNI( pSubarrayJoystickMoveEvent, 2 );
+      event->joystickMove.axis       =                  hb_arrayGetNI( pSubarrayJoystickMoveEvent, 3 );
+      event->joystickMove.position   = ( float )        hb_arrayGetND( pSubarrayJoystickMoveEvent, 4 );
+
+      // sfJoystickButtonEvent joystickButton
+      PHB_ITEM pSubarrayJoystickButtonEvent = hb_arrayGetItemPtr( pItem, 10 );
+
+      event->joystickButton.type       =                  hb_arrayGetNI( pSubarrayJoystickButtonEvent, 1 );
+      event->joystickButton.joystickId = ( unsigned int ) hb_arrayGetNI( pSubarrayJoystickButtonEvent, 2 );
+      event->joystickButton.button     = ( unsigned int ) hb_arrayGetNI( pSubarrayJoystickButtonEvent, 3 );
+
+      // sfJoystickConnectEvent joystickConnect
+      PHB_ITEM pSubarrayJoystickConnectEvent = hb_arrayGetItemPtr( pItem, 11 );
+
+      event->joystickConnect.type       =                  hb_arrayGetNI( pSubarrayJoystickConnectEvent, 1 );
+      event->joystickConnect.joystickId = ( unsigned int ) hb_arrayGetNI( pSubarrayJoystickConnectEvent, 2 );
+
+      // sfTouchEvent touch
+      PHB_ITEM pSubarrayTouchEvent = hb_arrayGetItemPtr( pItem, 12 );
+
+      event->touch.type   =                  hb_arrayGetNI( pSubarrayTouchEvent, 1 );
+      event->touch.finger = ( unsigned int ) hb_arrayGetNI( pSubarrayTouchEvent, 2 );
+      event->touch.x      =                  hb_arrayGetNI( pSubarrayTouchEvent, 3 );
+      event->touch.y      =                  hb_arrayGetNI( pSubarrayTouchEvent, 4 );
+
+      // sfSensorEvent sensor
+      PHB_ITEM pSubarraySensorEvent = hb_arrayGetItemPtr( pItem, 13 );
+
+      event->sensor.type       =           hb_arrayGetNI( pSubarraySensorEvent, 1 );
+      event->sensor.sensorType =           hb_arrayGetNI( pSubarraySensorEvent, 2 );
+      event->sensor.x          = ( float ) hb_arrayGetND( pSubarraySensorEvent, 3 );
+      event->sensor.y          = ( float ) hb_arrayGetND( pSubarraySensorEvent, 4 );
+      event->sensor.z          = ( float ) hb_arrayGetND( pSubarraySensorEvent, 5 );
+*/
+      hb_retl( sfWindow_pollEvent( window, &event ) );
+   }
+   else
+   {
+      hb_errRT_BASE_SubstR( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+   }
+}
 
 // sfBool sfWindow_waitEvent(sfWindow* window, sfEvent* event);
 
@@ -212,12 +326,12 @@ HB_FUNC( SFWINDOW_GETPOSITION )
    {
       sfVector2i sfvector2i = sfWindow_getPosition( window );
 
-      PHB_ITEM info = hb_itemArrayNew( 2 );
+      PHB_ITEM pVector2iArray = hb_itemArrayNew( 2 );
 
-      hb_arraySetNI( info, 1, sfvector2i.x );
-      hb_arraySetNI( info, 2, sfvector2i.y );
+      hb_arraySetNI( pVector2iArray, 1, sfvector2i.x );
+      hb_arraySetNI( pVector2iArray, 2, sfvector2i.y );
 
-      hb_itemReturnRelease( info );
+      hb_itemReturnRelease( pVector2iArray );
    }
    else
    {
@@ -256,12 +370,12 @@ HB_FUNC( SFWINDOW_GETSIZE )
    {
       sfVector2u sfvector2u = sfWindow_getSize( window );
 
-      PHB_ITEM info = hb_itemArrayNew( 2 );
+      PHB_ITEM pVector2uArray = hb_itemArrayNew( 2 );
 
-      hb_arraySetNI( info, 1, ( unsigned int ) sfvector2u.x );
-      hb_arraySetNI( info, 2, ( unsigned int ) sfvector2u.y );
+      hb_arraySetNI( pVector2uArray, 1, ( unsigned int ) sfvector2u.x );
+      hb_arraySetNI( pVector2uArray, 2, ( unsigned int ) sfvector2u.y );
 
-      hb_itemReturnRelease( info );
+      hb_itemReturnRelease( pVector2uArray );
    }
    else
    {
@@ -331,11 +445,9 @@ HB_FUNC( SFWINDOW_SETICON )
    if( window &&
       hb_param( 2, HB_IT_INTEGER ) != NULL &&
       hb_param( 3, HB_IT_INTEGER ) != NULL &&
-      hb_param( 4, HB_IT_INTEGER ) != NULL )
+      hb_param( 4, HB_IT_POINTER ) != NULL )
    {
-      const sfUint8 pixels;
-      sfWindow_setIcon( window, ( unsigned int ) hb_parni( 2 ), ( unsigned int ) hb_parni( 3 ), &pixels );
-      hb_storni( pixels, 4 );
+      sfWindow_setIcon( window, ( unsigned int ) hb_parni( 2 ), ( unsigned int ) hb_parni( 3 ), ( const unsigned char* ) hb_parptr( 4 ) );
    }
    else
    {

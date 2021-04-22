@@ -80,13 +80,13 @@ HB_FUNC( SFJOYSTICK_GETIDENTIFICATION )
    {
       sfJoystickIdentification sfjoystickidentification = sfJoystick_getIdentification( ( unsigned int ) hb_parni( 1 ) );
 
-      PHB_ITEM info = hb_itemArrayNew( 3 );
+      PHB_ITEM pJoystickIdentificationArray = hb_itemArrayNew( 3 );
 
-      hb_arraySetC(  info, 1,                  sfjoystickidentification.name );
-      hb_arraySetNI( info, 2, ( unsigned int ) sfjoystickidentification.vendorId );
-      hb_arraySetNI( info, 3, ( unsigned int ) sfjoystickidentification.productId );
+      hb_arraySetC(  pJoystickIdentificationArray, 1,                  sfjoystickidentification.name );
+      hb_arraySetNI( pJoystickIdentificationArray, 2, ( unsigned int ) sfjoystickidentification.vendorId );
+      hb_arraySetNI( pJoystickIdentificationArray, 3, ( unsigned int ) sfjoystickidentification.productId );
 
-      hb_itemReturnRelease( info );
+      hb_itemReturnRelease( pJoystickIdentificationArray );
    }
    else
    {
